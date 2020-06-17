@@ -1,114 +1,212 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import React, { Component } from 'react';
+import { Image, View, Text, Switch, SectionList, TouchableOpacity, StyleSheet, Platform} from 'react-native';
+//import Toast from 'react-native-simple-toast';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Analytics from 'appcenter-analytics';
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+//import SharedStyles from './SharedStyles';
+//import AnalyticsTabBarIcon from '../assets/analytics.png';
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+class App extends Component {
+  
+  /*
+  static navigationOptions = {
+    tabBarIcon: () => <Image style={{ width: 24, height: 24 }} source={AnalyticsTabBarIcon} />,
+    tabBarOnPress: ({ defaultHandler, navigation }) => {
+      const refreshAnalytics = navigation.getParam('refreshAnalytics');
+
+      // Initial press: the function is not defined yet so nothing to refresh.
+      if (refreshAnalytics) {
+        refreshAnalytics();
+      }
+      defaultHandler();
+    }
+  }
+  */
+
+  state = {
+    analyticsEnabled: false
+  }
+
+  async componentDidMount() {
+    await this.refreshToggle();
+
+    this.props.navigation.setParams({
+      refreshAnalytics: this.refreshToggle.bind(this)
+    });
+  }
+
+  async refreshToggle() {
+    //const analyticsEnabled = true;
+    this.setState({ analyticsEnabled });
+  }
+
+  render() {
+    const switchRenderItem = ({ item: { title, value, toggle } }) => (
+      <View style={SharedStyles.item}>
+        <Text style={SharedStyles.itemTitle}>{title}</Text>
+        <Switch value={this.state[value]} onValueChange={toggle} />
+      </View>
+    );
+
+    const actionRenderItem = ({ item: { title, action } }) => (
+      <TouchableOpacity style={SharedStyles.item} onPress={action}>
+        <Text style={SharedStyles.itemButton}>{title}</Text>
+      </TouchableOpacity>
+    );
+
+    //const showEventToast = eventName => Toast.show(`Scheduled event '${eventName}'.`);
+
+    return (
+      <View style={SharedStyles.container}>
+        <SectionList
+          renderItem={({ item }) => <Text style={[SharedStyles.item, SharedStyles.itemTitle]}>{item}</Text>}
+          renderSectionHeader={({ section: { title } }) => <Text style={SharedStyles.header}>{title}</Text>}
+          keyExtractor={(item, index) => item + index}
+          sections={[
+            {
+              title: 'Settings',
+              data: [
+                {
+                  title: 'Analytics Enabled',
+                  value: 'analyticsEnabled',
+                  toggle: async () => {
+                    await Analytics.setEnabled(!this.state.analyticsEnabled);
+                    const analyticsEnabled = await Analytics.isEnabled();
+                    this.setState({ analyticsEnabled });
+                  }
+                },
+              ],
+              renderItem: switchRenderItem
+            },
+            {
+              title: 'Actions',
+              data: [
+                {
+                  title: 'Track event without properties',
+                  action: () => {
+                    const eventName = 'EventWithoutProperties';
+                    Analytics.trackEvent(eventName);
+                    //const analyticsEnabled = await Analytics.isEnabled();
+                    //showEventToast(eventName);
+                  }
+                },
+                {
+                  title: 'Track event with properties',
+                  action: () => {
+                    const eventName = 'EventWithProperties';
+                    Analytics.trackEvent(eventName, { property1: '100', property2: '200' });
+                    //showEventToast(eventName);
+                  }
+                },
+                {
+                  title: 'Track event with long property value',
+                  action: () => {
+                    const eventName = 'EventWithLongProperties';
+                    Analytics.trackEvent(eventName, { propertyValueTooLong: '12345678901234567890123456789012345678901234567890123456789012345' });
+                    //showEventToast(eventName);
+                  }
+                },
+              ],
+              renderItem: actionRenderItem
+            },
+          ]}
+        />
+      </View>
+    );
+  }
+}
+
+const SharedStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    ...Platform.select({
+      ios: {
+        paddingTop: 25
+      }
+    })
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  header: {
+    marginLeft: 10,
+    marginTop: 10,
+    fontSize: 12
   },
-  body: {
-    backgroundColor: Colors.white,
+  item: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    height: 44,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'black',
+    backgroundColor: '#EEEEEE'
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  itemStretchable: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'gray',
+    backgroundColor: 'white'
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  itemTitle: {
+    color: 'black',
+    marginRight: 5
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+  itemButton: {
+    color: 'cornflowerblue',
+    textAlign: 'center',
+    width: '100%'
   },
-  highlight: {
-    fontWeight: '700',
+  itemInput: {
+    flex: 1,
+    padding: 5,
+    marginTop: -5,
+    marginBottom: -5,
+    textAlign: 'right'
   },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
+  underlinedItemInput: {
+    flex: 1,
+    padding: 5,
+    marginTop: -5,
+    marginBottom: -5,
     textAlign: 'right',
+    borderBottomWidth: 1
   },
+  modalSelector: {
+    borderColor: 'gray',
+    backgroundColor: 'white'
+  },
+  modalTextInput: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+  },
+  modalItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 8,
+    marginVertical: 8
+  },
+  modalButton: {
+    flex: 0.5,
+    padding: 16,
+    borderColor: 'grey',
+    borderWidth: 1,
+  },
+  dialogInput: {
+    ...Platform.select({
+      ios: {
+        backgroundColor: 'lightgrey'
+      }
+    })
+  }
 });
 
 export default App;

@@ -2,8 +2,7 @@
 #include "ReactPackageProvider.h"
 
 #include "NativeModules.h"
-
-
+#include "Analytics.h"
 
 using namespace winrt::Microsoft::ReactNative;
 

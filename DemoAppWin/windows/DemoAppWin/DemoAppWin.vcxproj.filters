@@ -16,6 +16,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="ReactPackageProvider.h" />
+    <ClInclude Include="Analytics.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
