@@ -13,8 +13,14 @@ import {
   ScrollView,
   View,
   Text,
+  SectionList,
   StatusBar,
+  Switch,
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
+
+import Analytics from 'appcenter-analytics';
 
 import {
   Header,
@@ -24,7 +30,23 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+
 const App: () => React$Node = () => {
+  const switchRenderItem = ({ item: { title, value, toggle } }) => (
+    <View style={styles.sectionContainer.item}>
+      <Text style={styles.sectionDescription}>{title}</Text>
+      <Switch value={analyticsEnabled} onValueChange={toggle} />
+    </View>
+  );
+  
+  const actionRenderItem = ({ item: { title, action } }) => (
+    <TouchableOpacity style={styles.sectionContainer} onPress={action}>
+      <Text style={styles.sectionDescription}>{title}</Text>
+    </TouchableOpacity>
+  );
+  
+  const [analyticsEnabled, setAnalyticsEnabled] = React.useState(false);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -32,39 +54,74 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
           <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+            <SectionList
+              renderItem={({ item }) => <Text style={[styles.sectionContainer, styles.sectionHeader]}>{item}</Text>}
+              renderSectionHeader={({ section: { title } }) => <Text style={styles.sectionHeader}>{title}</Text>}
+              keyExtractor={(item, index) => item + index}
+              sections={[
+                {
+                  title: 'Settings',
+                  data: [
+                    {
+                      title: 'Analytics Enabled',
+                      value: 'analyticsEnabled',
+                      toggle: async () => {
+                        //Alert.alert('Toggled \'Analytics Enabled\'');
+                        //await Analytics.setEnabled(!this.state.analyticsEnabled);
+                        //const analyticsEnabled = await Analytics.isEnabled();
+                        
+                        //const ae = await Analytics.isEnabled();
+                        //Alert.alert('The retuned value is: ' + ae);
+                        //setAnalyticsEnabled(ae);
+
+                        await Analytics.setEnabled(!analyticsEnabled);
+                        setAnalyticsEnabled(await Analytics.isEnabled());
+                      }
+                    },
+                  ],
+                  renderItem: switchRenderItem
+                },
+                {
+                  title: 'Actions',
+                  data: [
+                    {
+                      title: 'Track event without properties',
+                      action: () => {
+                        //Alert.alert('Pressed Track Event Without Properties');
+                        const eventName = 'EventWithoutProperties';
+                        Analytics.trackEvent(eventName);
+                        //showEventToast(eventName);
+                      }
+                    },
+                    {
+                      title: 'Track event with properties',
+                      action: () => {
+                        //Alert.alert('Pressed Track Event With Properties');
+                        const eventName = 'EventWithProperties';
+                        Analytics.trackEvent(eventName, { property1: '100', property2: '200' });
+                        //showEventToast(eventName);
+                      }
+                    },
+                    {
+                      title: 'Track event with long property value',
+                      action: () => {
+                        //Alert.alert('Pressed Track Event With Long Property Value');
+                        const eventName = 'EventWithLongProperties';
+                        Analytics.trackEvent(eventName, { propertyValueTooLong: '12345678901234567890123456789012345678901234567890123456789012345' });
+                        //showEventToast(eventName);
+                      }
+                    },
+                  ],
+                  renderItem: actionRenderItem
+                },
+              ]}
+            />
           </View>
         </ScrollView>
       </SafeAreaView>
