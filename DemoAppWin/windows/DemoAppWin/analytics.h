@@ -25,7 +25,7 @@ namespace AppCenterAnalytics {
 		void SetEnabled(bool&& enabled, 
 						winrt::Microsoft::ReactNative::ReactPromise<bool> promise) noexcept {
             OutputDebugStringA("Calling SetEnabled()\n");
-			promise.Resolve(m_enabled = !m_enabled);
+			promise.Resolve(m_enabled = enabled);
 		}
 
 		REACT_METHOD(IsEnabled, L"isEnabled")
