@@ -2,7 +2,7 @@
 #include "ReactPackageProvider.h"
 
 #include "NativeModules.h"
-#include "analytics.h"
+#include "Analytics.h"
 
 
 

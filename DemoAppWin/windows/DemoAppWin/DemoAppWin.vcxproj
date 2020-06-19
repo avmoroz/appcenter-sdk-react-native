@@ -102,7 +102,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="analytics.h" />
+    <ClInclude Include="Analytics.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.h">
