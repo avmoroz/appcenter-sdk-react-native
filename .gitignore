@@ -67,3 +67,5 @@ AppCenterReactNativeShared/Products/AppCenter-SDK-ReactNative-iOS-Pod-*.zip
 /DemoApp/android/app/.cxx/*
 /DemoAppWin/windows/DemoAppWin/DemoAppWin_TemporaryKey.pfx
 /DemoAppWin/msbuild.binlog
+/DemoAppWin/windows/DemoAppWin/Assets/app-center-config.json
+/DemoAppWin/windows/DemoAppWinCS/DemoApp_TemporaryKey.pfx.snk
