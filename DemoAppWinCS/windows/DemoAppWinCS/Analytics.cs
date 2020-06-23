@@ -7,156 +7,113 @@ using System.Threading.Tasks;
 using Microsoft.ReactNative;
 using Microsoft.ReactNative.Managed;
 
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+
 namespace DemoAppWinCS
 {
+	class temp {
+		public temp() {
+			AppCenter.Start("@app-secret", typeof(Analytics));
+		}
+	}
+
 	[ReactModule]
 	class AppCenterReactNativeAnalytics
 	{
-		private bool m_enabled = false;
+		//private bool m_enabled = false;
+		private temp toStart = new temp();
+		//private var mTransmissionTargets = new Dictionary<string, AnalyticsTransmissionTarget>();
+
+		//AppCenter.Start("{8cb33970-8b2a-486c-ad41-58006048d74a}", typeof(Analytics));
+		//AppCenterReactNativeAnalytics() {
+			//	
+			//	m_enabled = false;
+		//}
 
 		[ReactMethod("setEnabled")]
-		public void SetEnabled(bool enabled, ReactPromise<bool> promise) {
+		public void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
+			//Analytics
 			Debug.WriteLine("Calling SetEnabled()");
-			promise.Resolve(m_enabled = enabled);
+			Analytics.SetEnabledAsync(enabled);
+			promise.Resolve(JSValue.Null);
 		}
 
 		[ReactMethod("isEnabled")]
 		public void IsEnabled(ReactPromise<bool> promise) {
 			Debug.WriteLine("Calling IsEnabled()\n");
-			promise.Resolve(m_enabled);
+			promise.Resolve(Analytics.IsEnabledAsync().Result);
 		}
 
 		[ReactMethod("trackEvent")]
 		public void TrackEvent(string eventName,
 						Dictionary<string, string> properties,
 						ReactPromise<JSValue> promise) {
-
-			//auto json = buildJSON(eventName, properties);
+			Analytics.TrackEvent(eventName, properties); // Java implementation puts this in a try-catch block. Not sure why
 			promise.Resolve(JSValue.Null);
-			//sendHttpRequest(buildJSON(eventName, properties), promise);
 		}
 
-		/*
-		winrt::hstring buildJSON(std::wstring& eventName, winrt::Microsoft::ReactNative::JSValueObject& properties) {
-	JsonObject device;
-	device.Insert(L"wrapperSdkVersion", JsonValue::CreateStringValue(L"3.0.3"));
-	device.Insert(L"wrapperSdkName", JsonValue::CreateStringValue(L"appcenter.react-native"));
-	device.Insert(L"sdkName", JsonValue::CreateStringValue(L"appcenter.android"));
-	device.Insert(L"sdkVersion", JsonValue::CreateStringValue(L"3.2.0"));
-	device.Insert(L"model", JsonValue::CreateStringValue(L"5.1-inch Marshmallow (6.0.0) XXHDPI Phone"));
-	device.Insert(L"oemName", JsonValue::CreateStringValue(L"VS Emulator"));
-	device.Insert(L"osName", JsonValue::CreateStringValue(L"Android"));
-	device.Insert(L"osVersion", JsonValue::CreateStringValue(L"6.0"));
-	device.Insert(L"osBuild", JsonValue::CreateStringValue(L"MRA58K"));
-	device.Insert(L"osApiLevel", JsonValue::CreateNumberValue(23));
-	device.Insert(L"locale", JsonValue::CreateStringValue(L"en_US"));
-	device.Insert(L"timeZoneOffset", JsonValue::CreateNumberValue(-420));
-	device.Insert(L"screenSize", JsonValue::CreateStringValue(L"1440x2387"));
-	device.Insert(L"appVersion", JsonValue::CreateStringValue(L"1.0"));
-	device.Insert(L"appBuild", JsonValue::CreateStringValue(L"1"));
-	device.Insert(L"appNamespace", JsonValue::CreateStringValue(L"com.demoapp"));
+		[ReactMethod("trackTargetTransmissionEvent")]
+		public void TrackTransmissionTargetEvent(string eventName,
+						Dictionary<string, string> properties,
+						string targetToken,
+						ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	JsonArray typedProperties;
-	for (auto & pair : properties) {
-		JsonObject property;
-		property.Insert(L"type", JsonValue::CreateStringValue(L"string"));
-		property.Insert(L"name", JsonValue::CreateStringValue(winrt::to_hstring(pair.first)));
-		property.Insert(L"value", JsonValue::CreateStringValue(winrt::to_hstring(pair.second.AsString())));
-		typedProperties.Append(property);
-	}
+		[ReactMethod("getTransmissionTarget")]
+		public void GetTransmissionTarget(string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	JsonObject log;
-	log.Insert(L"type", JsonValue::CreateStringValue(L"event"));
-	log.Insert(L"timestamp", JsonValue::CreateStringValue(L"2020-06-16T04:13:15.301Z"));
-	log.Insert(L"sid", JsonValue::CreateStringValue(L"11f46dcc-9b22-463a-8ed9-c82e57f347af"));
-	log.Insert(L"name", JsonValue::CreateStringValue(eventName));
-	log.Insert(L"id", JsonValue::CreateStringValue(L"dcb25d80-d7ea-4503-9ce5-82ef56bf82b5"));
-	log.Insert(L"typedProperties", typedProperties);
-	log.Insert(L"device", device);
+		[ReactMethod("isTransmissionTargetEnabled")]
+		public void IsTransmissionTargetEnabled(string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	JsonArray logs;
-	logs.Append(log);
+		[ReactMethod("setTransmissionTargetEnabled")]
+		public void SetTransmissionTargetEnabled(bool enabled, string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	JsonObject outputWrapper;
-	outputWrapper.Insert(L"logs", logs);
+		[ReactMethod("setTransmissionTargetEventProperty")]
+		public void SetTransmissionTargetEventProperty(string propertyKey, 
+						string propertyValue, 
+						string targetToken, 
+						ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	OutputDebugStringW(outputWrapper.Stringify().c_str());
+		[ReactMethod("removeTransmissionTargetEventProperty")]
+		public void RemoveTransmissionTargetEventProperty(string propertyKey, string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	return outputWrapper.Stringify();
-}
+		[ReactMethod("collectTransmissionTargetDeviceId")]
+		public void CollectTransmissionTargetDeviceId(string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-void sendHttpRequest(winrt::param::hstring const& json, winrt::Microsoft::ReactNative::ReactPromise<void>& promise) {
+		[ReactMethod("getChildTransmissionTarget")]
+		public void GetChildTransmissionTarget(string childToken, string parentToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	auto file = winrt::Windows::Storage::StorageFile::GetFileFromApplicationUriAsync(
-			  winrt::Windows::Foundation::Uri{ L"ms-appx:///Assets/app-center-config.json"});
-	auto content = winrt::Windows::Storage::FileIO::ReadTextAsync(file.get()).get();
-	auto secretContainer = JsonObject::Parse(content);
-	auto appSecret = secretContainer.Lookup(L"app-secret").GetString();
+		[ReactMethod("setTransmissionTargetAppName")]
+		public void SetTransmissionTargetAppName(string appName, string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	HttpClient httpClient;
-	auto headers{ httpClient.DefaultRequestHeaders()};
-	//headers.Append(L"App-Secret", L"b924f8cc-a99e-466d-9dc5-47bccccb726a");
-	headers.Append(L"App-Secret", appSecret);
-	headers.Append(L"Install-ID", L"728c5cf5-6124-4aef-8ac6-524992147b55");
+		[ReactMethod("setTransmissionTargetAppVersion")]
+		public void SetTransmissionTargetAppVersion(string appVersion, string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	HttpStringContent stringContent{ json};
-	//OutputDebugStringW();
-	stringContent.Headers().Insert(L"Content-Type", L"application/json");
+		[ReactMethod("setTransmissionTargetAppLocale")]
+		public void SetTransmissionTargetAppLocale(string appLocale, string targetToken, ReactPromise<JSValue> promise) {
+			promise.Resolve(JSValue.Null);
+		}
 
-	HttpResponseMessage httpResponseMessage;
-	std::wstring httpResponseBody;
-
-	try {
-		// Send the POST request.
-		winrt::Windows::Foundation::Uri requestUri{ L"https://in.appcenter.ms/logs?api-version=1.0.0"};
-		httpResponseMessage = httpClient.PostAsync(requestUri, stringContent).get();
-		httpResponseMessage.EnsureSuccessStatusCode();
-		httpResponseBody = httpResponseMessage.Content().ReadAsStringAsync().get();
-		promise.Resolve();
-	}
-	catch (winrt::hresult_error const &ex) {
-		httpResponseBody = ex.message();
-		promise.Reject(ex.message().c_str());
-	}
-	OutputDebugStringW(httpResponseBody.c_str());
-	}
-
-	// I have no idea what these do; the MS docs don't mention them at all
-	/*
-	REACT_METHOD(TrackTransmissionTargetEvent, L"trackTransmissionTargetEvent")
-	void TrackTransmissionTargetEvent(std::string &&eventName, winrt::Microsoft::ReactNative::JSValueObject &&properties,
-											  std::string &&targetToken) noexcept {}
-
-	REACT_METHOD(GetTransmissionTarget, L"getTransmissionTarget")
-	void GetTransmissionTarget(std::string&& targetToken) noexcept {}
-
-	REACT_METHOD(IsTransmissionTargetEnabled, L"isTransmissionTargetEnabled")
-	void IsTransmissionTargetEnabled(std::string&& targetToken) noexcept {}
-
-	REACT_METHOD(SetTransmissionTargetEnabled, L"setTransmissionTargetEnabled")
-	void SetTransmissionTargetEnabled(bool&& enabled, std::string&& targetToken) noexcept {}
-
-	REACT_METHOD(SetTransmissionTargetEventProperty, L"setTransmissionTargetEventProperty")
-	void SetTransmissionTargetEventProperty(std::string&& propertyKey, std::string&& propertyValue, std::string&& targetToken) noexcept {}
-
-	REACT_METHOD(RemoveTransmissionEventProperty, L"removeTransmissionEventProperty")
-	void RemoveTransmissionEventProperty(std::string&& propertyKey, std::string&& propertyToken) noexcept {}
-
-	REACT_METHOD(CollectTransmissionTargetDeviceId, L"collectTransmissionTargetDeviceId")
-	void CollectTransmissionTargetDeviceId(std::string&& targetToken) noexcept {}
-
-	REACT_METHOD(GetChildTransmissionTarget, L"getChildTransmissionTarget")
-	void GetChildTransmissionTarget(std::string&& childToken, std::string&& parentToken) noexcept {}
-
-	REACT_METHOD(SetTransmissionTargetAppName, L"setTransmissionTargetAppName")
-	void SetTransmissionTargetAppName(std::string&& appName, std::string targetToken) noexcept {}
-
-	REACT_METHOD(SetTransmissionTargetAppVersion, L"setTransmissionTargetAppVersion")
-	void SetTransmissionTargetAppVersion(std::string&& appVersion, std::string&& targetToken) noexcept {}
-
-	REACT_METHOD(SetTransmissionTargetAppLocale, L"setTransmissionTargetAppLocale")
-	void SetTransmissionTargetAppLocale(std::string&& appLocale, std::string&& targetToken) noexcept {}
-	*/
 	}
 
 }
