@@ -74,3 +74,5 @@ AppCenterReactNativeShared/Products/AppCenter-SDK-ReactNative-iOS-Pod-*.zip
 /DemoAppWinCS/android/..
 /DemoAppWinCS/android/
 /DemoAppWinCS/ios/
+/DemoAppWinCS/windows/DemoAppWinCS/DemoAppWinCS_TemporaryKey.snk
+/DemoAppWinCS/windows/DemoAppWinCS/Assets/app-center-config.json

@@ -82,6 +82,7 @@ const App: () => React$Node = () => {
                         await Analytics.setEnabled(!analyticsEnabled);
                         //await Analytics.isEnabled();
                         setAnalyticsEnabled(await Analytics.isEnabled());
+                        Alert.alert("Enabled: " + (await Analytics.isEnabled()));
                       }
                     },
                   ],
@@ -95,7 +96,7 @@ const App: () => React$Node = () => {
                       action: () => {
                         //Alert.alert('Pressed Track Event Without Properties');
                         const eventName = 'EventWithoutProperties';
-                        Analytics.trackEvent();
+                        Analytics.trackEvent(eventName);
                         //showEventToast(eventName);
                       }
                     },
