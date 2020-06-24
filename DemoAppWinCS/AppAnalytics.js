@@ -31,7 +31,6 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-
 const App: () => React$Node = () => {
   const switchRenderItem = ({ item: { title, value, toggle } }) => (
     <View style={styles.sectionContainer.item}>
