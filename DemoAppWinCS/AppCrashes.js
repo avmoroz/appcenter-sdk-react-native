@@ -34,7 +34,7 @@ const App: () => React$Node = () => {
   const switchRenderItem = ({ item: { title, value, toggle } }) => (
     <View style={styles.sectionContainer.item}>
       <Text style={styles.sectionDescription}>{title}</Text>
-      <Button title="asdf" onPress={toggle} />
+      <Button title="Enable/Disable Crashes" onPress={toggle} />
     </View>
   );
   
@@ -93,29 +93,38 @@ const App: () => React$Node = () => {
                       title: 'Has Crashed?',
                       action: async () => {
                         //Alert.alert('Pressed Track Event Without Properties');
-                        const eventName = 'EventWithoutProperties';
+                        //const eventName = 'EventWithoutProperties';
                         const result = await Crashes.hasCrashedInLastSession()
-                        Alert.alert("Has Crashed: " + result);
+                        if (result) {
+                          const crashReport = await Crashes.lastSessionCrashReport();
+                          const crashReportString = JSON.stringify(crashReport, null, 4);
+                          Alert.alert('App crashed in the last session. Crashes.lastSessionCrashReport(): ', crashReportString);
+                        } else {
+                          Alert.alert("Has Crashed: " + result);
+                        }
                         //Analytics.trackEvent(eventName);
                         //showEventToast(eventName);
                       }
                     },
                     {
-                      title: 'Track event with properties',
-                      action: () => {
+                      title: 'Past Memory Warning?',
+                      action: async () => {
                         //Alert.alert('Pressed Track Event With Properties');
-                        const eventName = 'EventWithProperties';
+                        //const eventName = 'EventWithProperties';
+                        const result = await Crashes.hasReceivedMemoryWarningInLastSession();
+                        Alert.alert("Has recieved memory warning in last session: " + result);
                         //Analytics.trackEvent(eventName, { property1: '100', property2: '200' });
                         //showEventToast(eventName);
                       }
                     },
                     {
-                      title: 'Track event with long property value',
-                      action: () => {
+                      title: 'Generate Test Crash',
+                      action: async () => {
                         //Alert.alert('Pressed Track Event With Long Property Value');
-                        const eventName = 'EventWithLongProperties';
+                        //const eventName = 'EventWithLongProperties';
                         //Analytics.trackEvent(eventName, { propertyValueTooLong: '12345678901234567890123456789012345678901234567890123456789012345' });
                         //showEventToast(eventName);
+                        await Crashes.generateTestCrash();
                       }
                     },
                   ],
