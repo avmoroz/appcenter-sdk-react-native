@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ReactNative;
+﻿using Microsoft.ReactNative;
 using Microsoft.ReactNative.Managed;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
-using Windows.System;
-using Microsoft.AppCenter.Ingestion.Models;
-using Newtonsoft.Json;
 
 namespace DemoAppWinCS
 {
