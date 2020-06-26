@@ -220,6 +220,12 @@ const App: () => React$Node = () => {
 
           <View>
             <View>
+              <Button title="Start AppCenter Analytics" onPress={() => {
+                AppCenter.startFromLibrary({"bindingType": "Microsoft.AppCenter.Analytics.Analytics, Microsoft.AppCenter.Analytics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"});
+              }} />
+            </View>
+
+            <View>
               <Button title="Set Custom Properties" onPress={() => {
                 const properties = new CustomProperties()
                   .set('pi', 3.14)
@@ -230,7 +236,6 @@ const App: () => React$Node = () => {
                   .set('score', 7)
                   .set('now', new Date());
                 AppCenter.setCustomProperties(properties);
-                Alert.alert("Set Custom Properties");
               }} />
             </View>
 

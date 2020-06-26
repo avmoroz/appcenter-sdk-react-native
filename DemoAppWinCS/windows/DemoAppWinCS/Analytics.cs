@@ -18,6 +18,7 @@ namespace DemoAppWinCS
 	[ReactModule]
 	class AppCenterReactNativeAnalytics
 	{
+		/*
 		public AppCenterReactNativeAnalytics()
         {
 			StartAppCenter();
@@ -33,7 +34,8 @@ namespace DemoAppWinCS
 
 			AppCenter.Start(appSecret, typeof(Analytics));
 		}
-		
+		*/
+
 		[ReactMethod("setEnabled")]
 		public void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
 			Analytics.SetEnabledAsync(enabled);
