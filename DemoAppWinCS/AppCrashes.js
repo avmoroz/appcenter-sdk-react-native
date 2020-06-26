@@ -16,7 +16,7 @@ import {
   Alert,
 } from 'react-native';
 
-import Crashes from 'appcenter-crashes';
+import Crashes, { UserConfirmation, ErrorAttachmentLog } from 'appcenter-crashes';
 
 //import AttachmentsProvider from '../AttachmentsProvider';
 //mport SharedStyles from '../SharedStyles';
@@ -125,6 +125,24 @@ const App: () => React$Node = () => {
                         //Analytics.trackEvent(eventName, { propertyValueTooLong: '12345678901234567890123456789012345678901234567890123456789012345' });
                         //showEventToast(eventName);
                         await Crashes.generateTestCrash();
+                      }
+                    },
+                    {
+                      title: 'Don\'t Send Crash Reports',
+                      action: () => {
+                        Crashes.notifyUserConfirmation(UserConfirmation.DONT_SEND);
+                      }
+                    },
+                    {
+                      title: 'Send Crash Reports',
+                      action: () => {
+                        Crashes.notifyUserConfirmation(UserConfirmation.SEND);
+                      }
+                    },
+                    {
+                      title: 'Always Send Crash Reports',
+                      action: () => {
+                        Crashes.notifyUserConfirmation(UserConfirmation.ALWAYS_SEND);
                       }
                     },
                   ],

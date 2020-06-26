@@ -16,9 +16,6 @@ namespace DemoAppWinCS
 	[ReactModule]
 	class AppCenterReactNativeCrashes
 	{
-		private const int DONT_SEND = 0;
-		private const int SEND = 1;
-		private const int ALWAYS_SEND = 2;
 
 		public AppCenterReactNativeCrashes() {
 			Crashes.SendingErrorReport += Crashes_SendingErrorReport;
@@ -63,34 +60,60 @@ namespace DemoAppWinCS
 		}
 
 		[ReactMethod("notifyWithUserConfirmation")]
-		public void NotifyWithUserConfirmation(int userConfirmation) {
-			switch (userConfirmation) {
-				case DONT_SEND:
-					Crashes.NotifyUserConfirmation(UserConfirmation.DontSend);
-					break;
-				case SEND:
-					Crashes.NotifyUserConfirmation(UserConfirmation.Send);
-					break;
-				case ALWAYS_SEND:
-					Crashes.NotifyUserConfirmation(UserConfirmation.AlwaysSend);
-					break;
-			}
+		public void NotifyWithUserConfirmation(UserConfirmation userConfirmation) {
+			Crashes.NotifyUserConfirmation(userConfirmation);
+		}
+
+		[ReactMethod("lastSessionCrashReport")]
+		public void LastSessionCrashReport(ReactPromise<ErrorReport> promise) {
+			promise.Resolve(Crashes.GetLastSessionCrashReportAsync().Result);
+		}
+
+		[ReactMethod("getUnprocessedCrashReports")]
+		public void GetUnprocessedCrashReports(ReactPromise<ErrorReport> promise) {
+			// Unsure how unprocessed Crash Reports become a thing?
+			promise.Resolve(null);
+		}
+
+		[ReactMethod("sendCrashReportsOrAwaitUserConfirmationForFilteredIds")]
+		public void SendCrashReportsOrAwaitUserConfirmationForFilteredIds(JSValueArray filteredIDs, ReactPromise<ErrorReport> promise) {
+			// Yeah, no idea how this works either...
+			promise.Resolve(null);
 		}
 
 		private void Crashes_SendingErrorReport(object sender, SendingErrorReportEventArgs e) {
 			onBeforeSending?.Invoke(e.Report);
 		}
 
+		private void Crashes_SentErrorReport(object sender, SendingErrorReportEventArgs e) {
+			onSendingSucceeded?.Invoke(e.Report);
+		}
+
+		private void Crashes_FailedToSendErrorReport(object sender, SendingErrorReportEventArgs e) {
+			onSendingFailed?.Invoke(e.Report);
+		}
+
 		[ReactEvent]
 		public Action<ErrorReport> onBeforeSending { get; set; }
+
+		[ReactEvent]
+		public Action<ErrorReport> onSendingSucceeded { get; set; }
+
+		[ReactEvent]
+		public Action<ErrorReport> onSendingFailed { get; set; }
+
+		[ReactEvent]
+		public Action<ErrorReport> getErrorAttachments { get; set; }
+
+		[ReactEvent]
+		public Action<ErrorReport> shouldAwaitUserConfirmation { get; set; }
 
 	}
 	static class ErrorReportWriter
 	{
 		public static void WriteValue(this IJSValueWriter writer, ErrorReport errorReport) {
-			writer.WriteObjectBegin();
 			if (errorReport != null) {
-
+				writer.WriteObjectBegin();
 				writer.WriteObjectProperty("id", errorReport.Id);
 				//writer.WriteObjectProperty("threadName", errorReport.ThreadName); Should list thread, but it is not a property of ErrorReport. A UWP issue
 				writer.WriteObjectProperty("appErrorTime", errorReport.AppErrorTime.ToUnixTimeMilliseconds());
@@ -107,9 +130,11 @@ namespace DemoAppWinCS
 				if (deviceInfo != null) {
 					writer.WriteObjectProperty("device", deviceInfo);
 				}
-	
+				writer.WriteObjectEnd();
 			}
-			writer.WriteObjectEnd();
+			else {
+				writer.WriteNull();
+			}
 		}
 
 		public static void WriteValue(this IJSValueWriter writer, Microsoft.AppCenter.Device deviceInfo) {
@@ -135,7 +160,4 @@ namespace DemoAppWinCS
 
 	}
 
-		class AppCenterReactNativeCrashesListener { 
-		
-	}
 }
