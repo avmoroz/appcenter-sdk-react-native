@@ -10,6 +10,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
 using Windows.System;
 using Microsoft.AppCenter.Ingestion.Models;
+using Newtonsoft.Json;
 
 namespace DemoAppWinCS
 {
@@ -69,6 +70,9 @@ namespace DemoAppWinCS
 			promise.Resolve(Crashes.GetLastSessionCrashReportAsync().Result);
 		}
 
+		// ***********************************************************************************************************************
+		// Required for Listener, but do rely on WrapperSdkExceptionManager (Android) or MSWrapperCrashesHelper (iOS).
+		// Cannot find the implementation of how the do it, and the UWP implementation is not concerned with them for some reason.
 		[ReactMethod("getUnprocessedCrashReports")]
 		public void GetUnprocessedCrashReports(ReactPromise<ErrorReport> promise) {
 			// Unsure how unprocessed Crash Reports become a thing?
@@ -76,10 +80,10 @@ namespace DemoAppWinCS
 		}
 
 		[ReactMethod("sendCrashReportsOrAwaitUserConfirmationForFilteredIds")]
-		public void SendCrashReportsOrAwaitUserConfirmationForFilteredIds(JSValueArray filteredIDs, ReactPromise<ErrorReport> promise) {
-			// Yeah, no idea how this works either...
-			promise.Resolve(null);
+		public void SendCrashReportsOrAwaitUserConfirmationForFilteredIds(JSValueArray filteredIDs, ReactPromise<bool> promise) {
+			promise.Resolve(false);
 		}
+		// **********************************************************************************************************************
 
 		private void Crashes_SendingErrorReport(object sender, SendingErrorReportEventArgs e) {
 			onBeforeSending?.Invoke(e.Report);
