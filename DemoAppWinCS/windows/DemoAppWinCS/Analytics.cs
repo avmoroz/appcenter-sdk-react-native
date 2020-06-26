@@ -18,24 +18,6 @@ namespace DemoAppWinCS
 	[ReactModule]
 	class AppCenterReactNativeAnalytics
 	{
-		/*
-		public AppCenterReactNativeAnalytics()
-        {
-			StartAppCenter();
-		}
-
-		private static async void StartAppCenter()
-        {
-			var file = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(
-				new Uri("ms-appx:///Assets/app-center-config.json"));
-			var content = await Windows.Storage.FileIO.ReadTextAsync(file);
-			var secretContainer = Windows.Data.Json.JsonObject.Parse(content);
-			var appSecret = secretContainer.GetNamedString("app-secret");
-
-			AppCenter.Start(appSecret, typeof(Analytics));
-		}
-		*/
-
 		[ReactMethod("setEnabled")]
 		public void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
 			Analytics.SetEnabledAsync(enabled);
@@ -51,7 +33,7 @@ namespace DemoAppWinCS
 		public void TrackEvent(string eventName,
 						Dictionary<string, string> properties,
 						ReactPromise<JSValue> promise) {
-			Analytics.TrackEvent(eventName, properties); // Java implementation puts this in a try-catch block. Not sure why
+			Analytics.TrackEvent(eventName, properties);
 			promise.Resolve(JSValue.Null);
 		}
 	}
