@@ -1,8 +1,10 @@
-﻿using Microsoft.ReactNative;
+﻿using System;
+using Microsoft.ReactNative;
 using Microsoft.ReactNative.Managed;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
+using Windows.Media.Ocr;
 
 namespace DemoAppWinCS
 {
@@ -11,34 +13,36 @@ namespace DemoAppWinCS
 	{
 
 		public AppCenterReactNativeCrashes() {
+			//AppCenter.Start(typeof(Crashes));
+			Crashes.ShouldProcessErrorReport = ShouldProcess;
+			//Crashes.ShouldAwaitUserConfirmation = ;
+			//Crashes.GetErrorAttachments = ;
+
 			Crashes.SendingErrorReport += Crashes_SendingErrorReport;
-			StartAppCenter();
+			Crashes.SentErrorReport += Crashes_SentErrorReport;
+			Crashes.FailedToSendErrorReport += Crashes_FailedToSendErrorReport;
+			//Console.WriteLine(AppCenter.Configured);
 		}
 
-		private static async void StartAppCenter() {
-			var file = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(
-				new Uri("ms-appx:///Assets/app-center-config.json"));
-			var content = await Windows.Storage.FileIO.ReadTextAsync(file);
-			var secretContainer = Windows.Data.Json.JsonObject.Parse(content);
-			var appSecret = secretContainer.GetNamedString("app-secret");
-
-			AppCenter.Start(appSecret, typeof(Crashes));
-		}
+		//[ReactMethod("setEnabled")]
+		//public async void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
+		//	int ans = 42 / 0;
+		//}
 
 		[ReactMethod("setEnabled")]
-		public void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
-			Crashes.SetEnabledAsync(enabled);
+		public async void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
+			await Crashes.SetEnabledAsync(enabled);
 			promise.Resolve(JSValue.Null);
 		}
 
 		[ReactMethod("isEnabled")]
-		public void IsEnabled(ReactPromise<bool> promise) {
-			promise.Resolve(Crashes.IsEnabledAsync().Result);
+		public async void IsEnabled(ReactPromise<bool> promise) {
+			promise.Resolve(await Crashes.IsEnabledAsync());
 		}
 
 		[ReactMethod("hasCrashedInLastSession")]
-		public void HasCrashedInLastSession(ReactPromise<bool> promise) {
-			promise.Resolve(Crashes.HasCrashedInLastSessionAsync().Result);
+		public async void HasCrashedInLastSession(ReactPromise<bool> promise) {
+			promise.Resolve(await Crashes.HasCrashedInLastSessionAsync());
 		}
 
 		[ReactMethod("hasReceivedMemoryWarningInLastSession")]
@@ -58,8 +62,8 @@ namespace DemoAppWinCS
 		}
 
 		[ReactMethod("lastSessionCrashReport")]
-		public void LastSessionCrashReport(ReactPromise<ErrorReport> promise) {
-			promise.Resolve(Crashes.GetLastSessionCrashReportAsync().Result);
+		public async void LastSessionCrashReport(ReactPromise<ErrorReport> promise) {
+			promise.Resolve(await Crashes.GetLastSessionCrashReportAsync());
 		}
 
 		// ***********************************************************************************************************************
@@ -68,6 +72,8 @@ namespace DemoAppWinCS
 		[ReactMethod("getUnprocessedCrashReports")]
 		public void GetUnprocessedCrashReports(ReactPromise<ErrorReport> promise) {
 			// Unsure how unprocessed Crash Reports become a thing?
+			//Crashes.TrackError()
+
 			promise.Resolve(null);
 		}
 
@@ -77,15 +83,19 @@ namespace DemoAppWinCS
 		}
 		// **********************************************************************************************************************
 
+		bool ShouldProcess(ErrorReport report) {
+			AppCenterLog.Info("words", "Determining whether to process error report");
+			return true;
+		}
 		private void Crashes_SendingErrorReport(object sender, SendingErrorReportEventArgs e) {
 			onBeforeSending?.Invoke(e.Report);
 		}
 
-		private void Crashes_SentErrorReport(object sender, SendingErrorReportEventArgs e) {
+		private void Crashes_SentErrorReport(object sender, SentErrorReportEventArgs e) {
 			onSendingSucceeded?.Invoke(e.Report);
 		}
 
-		private void Crashes_FailedToSendErrorReport(object sender, SendingErrorReportEventArgs e) {
+		private void Crashes_FailedToSendErrorReport(object sender, FailedToSendErrorReportEventArgs e) {
 			onSendingFailed?.Invoke(e.Report);
 		}
 
@@ -138,18 +148,18 @@ namespace DemoAppWinCS
 			writer.WriteObjectProperty("appBuild", deviceInfo.AppBuild);
 			writer.WriteObjectProperty("appNamespace", deviceInfo.AppNamespace);
 			writer.WriteObjectProperty("appVersion", deviceInfo.AppVersion);
-			writer.WriteObjectProperty("carrierCountry", deviceInfo.CarrierCountry);
-			writer.WriteObjectProperty("carrierName", deviceInfo.CarrierName);
-			writer.WriteObjectProperty("locale", deviceInfo.Locale);
-			writer.WriteObjectProperty("model", deviceInfo.Model);
-			writer.WriteObjectProperty("oemName", deviceInfo.OemName);
+			writer.WriteObjectProperty("carrierCountry", deviceInfo.CarrierCountry ?? "");
+			writer.WriteObjectProperty("carrierName", deviceInfo.CarrierName ?? "");
+			writer.WriteObjectProperty("locale", deviceInfo.Locale ?? "");
+			writer.WriteObjectProperty("model", deviceInfo.Model ?? "");
+			writer.WriteObjectProperty("oemName", deviceInfo.OemName ?? "");
 			writer.WriteObjectProperty("osAPILevel", deviceInfo.OsApiLevel);
-			writer.WriteObjectProperty("osBuild", deviceInfo.OsBuild);
-			writer.WriteObjectProperty("osName", deviceInfo.OsName);
-			writer.WriteObjectProperty("osVersion", deviceInfo.OsVersion);
-			writer.WriteObjectProperty("screenSize", deviceInfo.ScreenSize);
-			writer.WriteObjectProperty("sdkName", deviceInfo.SdkName);
-			writer.WriteObjectProperty("sdkVersion", deviceInfo.SdkVersion);
+			writer.WriteObjectProperty("osBuild", deviceInfo.OsBuild ?? "");
+			writer.WriteObjectProperty("osName", deviceInfo.OsName ?? "");
+			writer.WriteObjectProperty("osVersion", deviceInfo.OsVersion ?? "");
+			writer.WriteObjectProperty("screenSize", deviceInfo.ScreenSize ?? "");
+			writer.WriteObjectProperty("sdkName", deviceInfo.SdkName ?? "");
+			writer.WriteObjectProperty("sdkVersion", deviceInfo.SdkVersion ?? "");
 			writer.WriteObjectProperty("timeZoneOffset", deviceInfo.TimeZoneOffset);
 			writer.WriteObjectEnd();
 		}

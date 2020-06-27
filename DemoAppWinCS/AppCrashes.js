@@ -17,6 +17,8 @@ import {
 } from 'react-native';
 
 import Crashes, { UserConfirmation, ErrorAttachmentLog } from 'appcenter-crashes';
+import appcenter from 'appcenter';
+import 'appcenter/appcenter-log';
 
 //import AttachmentsProvider from '../AttachmentsProvider';
 //mport SharedStyles from '../SharedStyles';
@@ -45,22 +47,23 @@ const App: () => React$Node = () => {
   const [crashesEnabled, setCrashesEnabled] = React.useState(false);
 
   Crashes.setListener({
-      onBeforeSending: function (report) {
-        Alert.alert('onBeforeSending');
-      },
-      onSendingSucceeded: function (report) {
-        Alert.alert('onSendingSucceeded');
-      },
-      onSendingFailed: function (report) {
-        Alert.alert('onSendingFailed');
-      },
-      getErrorAttachments(report) {
-        const textAttachment = ErrorAttachmentLog.attachmentWithText('Hello text attachment!', 'hello.txt');
-        const binaryAttachment = ErrorAttachmentLog.attachmentWithBinary(`${imageAsBase64string}`, 'logo.png', 'image/png');
-        return [textAttachment, binaryAttachment];
-      },
-      shouldAwaitUserConfirmation: function (report) {
-        return false;
+    onBeforeSending: function (report) {
+      Alert.alert('onBeforeSending');
+    },
+    onSendingSucceeded: function (report) {
+      Alert.alert('onSendingSucceeded');
+    },
+    onSendingFailed: function (report) {
+      Alert.alert('onSendingFailed');
+    },
+    getErrorAttachments(report) {
+      const textAttachment = ErrorAttachmentLog.attachmentWithText('Hello text attachment!', 'hello.txt');
+      const binaryAttachment = ErrorAttachmentLog.attachmentWithBinary(`${imageAsBase64string}`, 'logo.png', 'image/png');
+      return [textAttachment, binaryAttachment];
+    },
+    shouldAwaitUserConfirmation: function (report) {
+      Alert.alert('shouldAwaitUserConfirmation');
+      return false;
     },
   });
 
@@ -86,7 +89,7 @@ const App: () => React$Node = () => {
                   title: 'Settings',
                   data: [
                     {
-                      title: 'Crashes Enabled',
+                      title: 'Crashes',
                       value: 'crashesEnabled',
                       toggle: async () => {
                         await Crashes.setEnabled(!crashesEnabled);
@@ -100,6 +103,26 @@ const App: () => React$Node = () => {
                 {
                   title: 'Actions',
                   data: [
+                    {
+                      title: 'Is Appcenter Enabled?',
+                      action: async () => {
+                        const result = await appcenter.isEnabled()
+                        Alert.alert("appcenter enabled: " + result);
+                      }
+                    },
+                    {
+                      title: 'javascript crash',
+                      action: () => {
+                        throw 500;
+                      }
+                    },
+                    {
+                      title: 'Is Crashes Enabled?',
+                      action: async () => {
+                        const result = await Crashes.isEnabled()
+                        Alert.alert("Crashes enabled?: " + result);
+                      }
+                    },
                     {
                       title: 'Has Crashed?',
                       action: async () => {
