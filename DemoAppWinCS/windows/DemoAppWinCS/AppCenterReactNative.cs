@@ -30,8 +30,7 @@ namespace DemoAppWinCS
         [ReactMethod("isEnabled")]
         public async void IsEnabled(ReactPromise<bool> promise)
         {
-            var test = await AppCenter.IsEnabledAsync();
-            promise.Resolve(test);
+            promise.Resolve(await AppCenter.IsEnabledAsync());
         }
 
         [ReactMethod("setLogLevel")]
