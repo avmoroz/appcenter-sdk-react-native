@@ -32,7 +32,7 @@ namespace DemoAppWinCS
 #else
             InstanceSettings.EnableDeveloperMenu = false;
 #endif
-
+			InstanceSettings.RedBoxHandler = new RedBoxHandler(Host);
 			Microsoft.ReactNative.Managed.AutolinkedNativeModules.RegisterAutolinkedNativeModulePackages(PackageProviders); // Includes any autolinked modules
 
 			PackageProviders.Add(new Microsoft.ReactNative.Managed.ReactPackageProvider()); // Includes any modules in this project

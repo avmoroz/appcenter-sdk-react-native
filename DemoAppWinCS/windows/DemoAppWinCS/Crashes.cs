@@ -5,16 +5,97 @@ using Microsoft.ReactNative.Managed;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
 using Windows.Media.Ocr;
+using System.Linq;
+using Windows.Devices.PointOfService;
+using System.Collections.Generic;
+using Windows.Data.Json;
+using System.Runtime.CompilerServices;
 
 namespace DemoAppWinCS
 {
+	public class JavaScriptFatalException : System.Exception
+	{
+		public JavaScriptFatalException() : base() { }
+		public JavaScriptFatalException(string message) : base(message) { }
+		public JavaScriptFatalException(string message, System.Exception inner) : base(message, inner) { }
+	}
+
+	public class JavaScriptSoftException : Exception
+	{
+		public JavaScriptSoftException() : base() { }
+		public JavaScriptSoftException(string message) : base(message) { }
+		public JavaScriptSoftException(string message, System.Exception inner) : base(message, inner) { }
+	}
+
+	public class ReactNativeException : System.Exception
+	{
+		public ReactNativeException() : base() { }
+		public ReactNativeException(string message) : base(message) { }
+		public ReactNativeException(string message, System.Exception inner) : base(message, inner) { }
+	}
+
+	class RedBoxHandler : IRedBoxHandler {
+
+		private IRedBoxHandler defaultHandler;
+		public RedBoxHandler(ReactNativeHost host) {
+			defaultHandler = RedBoxHelper.CreateDefaultHandler(host);
+		}
+
+		public void ShowNewError(IRedBoxErrorInfo info, RedBoxErrorType type) {
+			
+			//var properties = new Dictionary<string, string>();
+			int index = 0;
+
+
+			var callstack = new JsonArray();
+			foreach (var a in info.Callstack) {
+				var toAdd = new JsonObject();
+				toAdd.SetNamedValue("index", JsonValue.CreateNumberValue(index++));
+				toAdd.SetNamedValue("method", JsonValue.CreateStringValue(a.Method));
+				toAdd.SetNamedValue("file", JsonValue.CreateStringValue(a.File));
+				toAdd.SetNamedValue("line", JsonValue.CreateNumberValue(a.Line));
+				toAdd.SetNamedValue("column", JsonValue.CreateNumberValue(a.Column));
+				callstack.Add(toAdd);
+			}
+
+			var attachments = new ErrorAttachmentLog[]
+			{
+				ErrorAttachmentLog.AttachmentWithText(callstack.ToString(), "callstack.json")
+			};
+
+			switch (type) {
+				case RedBoxErrorType.JavaScriptFatal:
+				Crashes.TrackError(new JavaScriptFatalException(info.Message), attachments : attachments);
+				break;
+				case RedBoxErrorType.JavaScriptSoft:
+				Crashes.TrackError(new JavaScriptSoftException(info.Message), attachments: attachments);
+				break;
+				case RedBoxErrorType.Native:
+				Crashes.TrackError(new ReactNativeException(info.Message), attachments: attachments);
+				break;
+			}
+			
+			defaultHandler.ShowNewError(info, type);
+		}
+
+		public void UpdateError(IRedBoxErrorInfo info) {
+			defaultHandler.UpdateError(info);
+		}
+
+		public void DismissRedBox() {
+			defaultHandler.DismissRedBox();
+		}
+
+		public bool IsDevSupportEnabled => defaultHandler.IsDevSupportEnabled;
+	}
+
 	[ReactModule]
 	class AppCenterReactNativeCrashes
 	{
 
 		public AppCenterReactNativeCrashes() {
 			//AppCenter.Start(typeof(Crashes));
-			Crashes.ShouldProcessErrorReport = ShouldProcess;
+			//Crashes.ShouldProcessErrorReport = ShouldProcess;
 			//Crashes.ShouldAwaitUserConfirmation = ;
 			//Crashes.GetErrorAttachments = ;
 
@@ -22,6 +103,7 @@ namespace DemoAppWinCS
 			Crashes.SentErrorReport += Crashes_SentErrorReport;
 			Crashes.FailedToSendErrorReport += Crashes_FailedToSendErrorReport;
 			//Console.WriteLine(AppCenter.Configured);
+			//Crashes.TrackError()
 		}
 
 		//[ReactMethod("setEnabled")]
@@ -70,16 +152,13 @@ namespace DemoAppWinCS
 		// Required for Listener, but do rely on WrapperSdkExceptionManager (Android) or MSWrapperCrashesHelper (iOS).
 		// Cannot find the implementation of how the do it, and the UWP implementation is not concerned with them for some reason.
 		[ReactMethod("getUnprocessedCrashReports")]
-		public void GetUnprocessedCrashReports(ReactPromise<ErrorReport> promise) {
-			// Unsure how unprocessed Crash Reports become a thing?
-			//Crashes.TrackError()
-
-			promise.Resolve(null);
+		public async void GetUnprocessedCrashReports(ReactPromise<ErrorReport> promise) {
+			promise.Resolve(await Crashes.GetLastSessionCrashReportAsync());
 		}
 
 		[ReactMethod("sendCrashReportsOrAwaitUserConfirmationForFilteredIds")]
 		public void SendCrashReportsOrAwaitUserConfirmationForFilteredIds(JSValueArray filteredIDs, ReactPromise<bool> promise) {
-			promise.Resolve(false);
+			promise.Resolve(true);
 		}
 		// **********************************************************************************************************************
 
@@ -163,6 +242,15 @@ namespace DemoAppWinCS
 			writer.WriteObjectProperty("timeZoneOffset", deviceInfo.TimeZoneOffset);
 			writer.WriteObjectEnd();
 		}
+
+		//public static void WriteValue(this IJSValueWriter writer, IRedBoxErrorFrameInfo redBoxErrorFrameInfo) {
+		//	writer.WriteObjectBegin();
+		//	writer.WriteObjectProperty("method", redBoxErrorFrameInfo.Method);
+		//	writer.WriteObjectProperty("file", redBoxErrorFrameInfo.File);
+		//	writer.WriteObjectProperty("line", redBoxErrorFrameInfo.Line);
+		//	writer.WriteObjectProperty("column", redBoxErrorFrameInfo.Column);
+		//	writer.WriteObjectEnd();
+		//}
 
 	}
 

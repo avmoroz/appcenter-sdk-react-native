@@ -153,6 +153,7 @@ const App: () => React$Node = () => {
                       title: 'Don\'t Send Crash Reports',
                       action: () => {
                         Crashes.notifyUserConfirmation(UserConfirmation.DONT_SEND);
+                        
                       }
                     },
                     {
@@ -165,6 +166,28 @@ const App: () => React$Node = () => {
                       title: 'Always Send Crash Reports',
                       action: () => {
                         Crashes.notifyUserConfirmation(UserConfirmation.ALWAYS_SEND);
+                      }
+                    },
+                    {
+                      title: 'Make Alert',
+                      action: () => {
+                        Alert.alert(
+                          'Alert Title',
+                          'My Alert Msg',
+                          [
+                            {
+                              text: 'Ask me later',
+                              onPress: () => console.log('Ask me later pressed')
+                            },
+                            {
+                              text: 'Cancel',
+                              onPress: () => console.log('Cancel Pressed'),
+                              style: 'cancel'
+                            },
+                            { text: 'OK', onPress: () => console.log('OK Pressed') }
+                          ],
+                          { cancelable: false }
+                        );
                       }
                     },
                   ],
