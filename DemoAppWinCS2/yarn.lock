@@ -1274,10 +1274,8 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-appcenter-analytics@3.0.3:
+"appcenter-analytics@file:../appcenter-analytics":
   version "3.0.3"
-  resolved "https://registry.yarnpkg.com/appcenter-analytics/-/appcenter-analytics-3.0.3.tgz#9bbd24b4b87c730e6e3f9f3c1524f7494fab4263"
-  integrity sha512-JvR8pUqcIgzFJ1cC8YtfsTOKOgMAhRpqUavxbVJsUIQ2ahQtYnUvi7+3DJxbY1iNZORWQMOT7zDO/6fNdtBVKQ==
   dependencies:
     appcenter "3.0.3"
 
@@ -1301,10 +1299,8 @@ appcenter-link-scripts@3.0.3:
     which "1.2.11"
     xcode "2.0.0"
 
-appcenter@3.0.3:
+appcenter@3.0.3, "appcenter@file:../appcenter":
   version "3.0.3"
-  resolved "https://registry.yarnpkg.com/appcenter/-/appcenter-3.0.3.tgz#62d0868d090f4d0fb68d825f5e402be94d388313"
-  integrity sha512-HOfgcM3XBK4cxnT9/a3QFolRuZf9LNCbOspOJVpXJsekcDAzAVpYzmlFihaMm/e/s9nfngAyik4BqftBzFtCog==
   dependencies:
     appcenter-link-scripts "3.0.3"
 
