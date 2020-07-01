@@ -1,8 +1,11 @@
 ﻿using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.ReactNative;
+using Microsoft.ReactNative.Managed;
 using System;
 using Windows.ApplicationModel.Activation;
+
 
 namespace DemoAppWinCS
 {
@@ -32,6 +35,9 @@ namespace DemoAppWinCS
             
             PackageProviders.Add(new Microsoft.ReactNative.Managed.ReactPackageProvider()); // Includes any modules in this project
             //PackageProviders.Add(new DemoAppWinCS.ReactPackageProvider());
+            PackageProviders.Add(new Microsoft.ReactNative.AppCenter.ReactPackageProvider());
+            //PackageProviders.Add(new AppCenter.ReactPackageProvider());
+            PackageProviders.Add(new Microsoft.ReactNative.AppCenter.Analytics.ReactPackageProvider());
 
             InitializeComponent();
         }
@@ -49,7 +55,7 @@ namespace DemoAppWinCS
             var content = await Windows.Storage.FileIO.ReadTextAsync(file);
             var secretContainer = Windows.Data.Json.JsonObject.Parse(content);
             var appSecret = secretContainer.GetNamedString("app-secret");
-            AppCenter.Start(appSecret);
+            Microsoft.AppCenter.AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes));
         }
     }
 }

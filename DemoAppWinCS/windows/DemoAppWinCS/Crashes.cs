@@ -17,22 +17,6 @@ namespace DemoAppWinCS
 	[ReactModule]
 	class AppCenterReactNativeCrashes
 	{
-
-		public AppCenterReactNativeCrashes() {
-			Crashes.SendingErrorReport += Crashes_SendingErrorReport;
-			StartAppCenter();
-		}
-
-		private static async void StartAppCenter() {
-			var file = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(
-				new Uri("ms-appx:///Assets/app-center-config.json"));
-			var content = await Windows.Storage.FileIO.ReadTextAsync(file);
-			var secretContainer = Windows.Data.Json.JsonObject.Parse(content);
-			var appSecret = secretContainer.GetNamedString("app-secret");
-
-			AppCenter.Start(appSecret, typeof(Crashes));
-		}
-
 		[ReactMethod("setEnabled")]
 		public void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
 			Crashes.SetEnabledAsync(enabled);
