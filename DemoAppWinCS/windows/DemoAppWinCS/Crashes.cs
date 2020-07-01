@@ -41,11 +41,11 @@ namespace DemoAppWinCS
 			defaultHandler = RedBoxHelper.CreateDefaultHandler(host);
 		}
 
+		// Does not work in release mode
 		public void ShowNewError(IRedBoxErrorInfo info, RedBoxErrorType type) {
 			
 			//var properties = new Dictionary<string, string>();
 			int index = 0;
-
 
 			var callstack = new JsonArray();
 			foreach (var a in info.Callstack) {
