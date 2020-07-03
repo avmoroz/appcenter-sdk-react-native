@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenter", "..\node_module
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenterReactNativeAnalytics", "..\node_modules\appcenter-analytics\windows\AppCenterReactNativeAnalytics\AppCenterReactNativeAnalytics.csproj", "{7964B8C0-0657-4F31-8324-47A245264C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenterReactNativeCrashes", "Microsoft.ReactNative.AppCenter.Crashes\AppCenterReactNativeCrashes.csproj", "{7123D960-6164-4748-9786-F15E5D5DB03B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenterReactNativeCrashes", "Microsoft.AppCenter.Crashes.ReactNative\AppCenterReactNativeCrashes.csproj", "{7123D960-6164-4748-9786-F15E5D5DB03B}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

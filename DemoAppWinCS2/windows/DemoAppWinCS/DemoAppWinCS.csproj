@@ -176,7 +176,7 @@
       <Project>{f7d32bd0-2749-483e-9a0d-1635ef7e3136}</Project>
       <Name>Microsoft.ReactNative</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Microsoft.ReactNative.AppCenter.Crashes\AppCenterReactNativeCrashes.csproj">
+    <ProjectReference Include="..\Microsoft.AppCenter.Crashes.ReactNative\AppCenterReactNativeCrashes.csproj">
       <Project>{7123d960-6164-4748-9786-f15e5d5db03b}</Project>
       <Name>AppCenterReactNativeCrashes</Name>
     </ProjectReference>
