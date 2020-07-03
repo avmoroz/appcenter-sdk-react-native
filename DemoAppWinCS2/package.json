@@ -15,8 +15,8 @@
     "appcenter-analytics": "file:../appcenter-analytics",
     "appcenter-crashes": "3.0.3",
     "react": "16.9.0",
-    "react-native": "^0.62.0-0",
-    "react-native-windows": "0.62.0-preview.17"
+    "react-native": "0.62",
+    "react-native-windows": "0.62"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

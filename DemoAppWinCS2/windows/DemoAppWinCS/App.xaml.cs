@@ -36,7 +36,8 @@ namespace DemoAppWinCS
             PackageProviders.Add(new Microsoft.ReactNative.Managed.ReactPackageProvider()); // Includes any modules in this project
             PackageProviders.Add(new AppCenter.ReactPackageProvider());
             PackageProviders.Add(new AppCenterReactNativeAnalytics.ReactPackageProvider());
-            
+            PackageProviders.Add(new AppCenterReactNativeCrashes.ReactPackageProvider());
+
             InitializeComponent();
         }
 

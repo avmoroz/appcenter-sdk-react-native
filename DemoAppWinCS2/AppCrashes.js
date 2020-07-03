@@ -17,6 +17,8 @@ import {
 } from 'react-native';
 
 import Crashes, { UserConfirmation, ErrorAttachmentLog } from 'appcenter-crashes';
+import appcenter from 'appcenter';
+import 'appcenter/appcenter-log';
 
 //import AttachmentsProvider from '../AttachmentsProvider';
 //mport SharedStyles from '../SharedStyles';
@@ -44,6 +46,27 @@ const App: () => React$Node = () => {
   
   const [crashesEnabled, setCrashesEnabled] = React.useState(false);
 
+  Crashes.setListener({
+    onBeforeSending: function (report) {
+      Alert.alert('onBeforeSending');
+    },
+    onSendingSucceeded: function (report) {
+      Alert.alert('onSendingSucceeded');
+    },
+    onSendingFailed: function (report) {
+      Alert.alert('onSendingFailed');
+    },
+    getErrorAttachments(report) {
+      const textAttachment = ErrorAttachmentLog.attachmentWithText('Hello text attachment!', 'hello.txt');
+      const binaryAttachment = ErrorAttachmentLog.attachmentWithBinary(`${imageAsBase64string}`, 'logo.png', 'image/png');
+      return [textAttachment, binaryAttachment];
+    },
+    shouldAwaitUserConfirmation: function (report) {
+      Alert.alert('shouldAwaitUserConfirmation');
+      return false;
+    },
+  });
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -66,19 +89,10 @@ const App: () => React$Node = () => {
                   title: 'Settings',
                   data: [
                     {
-                      title: 'Crashes Enabled',
+                      title: 'Crashes',
                       value: 'crashesEnabled',
                       toggle: async () => {
-                        //Alert.alert('Toggled \'Analytics Enabled\'');
-                        //await Analytics.setEnabled(!this.state.analyticsEnabled);
-                        //const analyticsEnabled = await Analytics.isEnabled();
-                        
-                        //const ae = await Analytics.isEnabled();
-                        //Alert.alert('The retuned value is: ' + ae);
-                        //setAnalyticsEnabled(!analyticsEnabled);
-
                         await Crashes.setEnabled(!crashesEnabled);
-                        //await Analytics.isEnabled();
                         setCrashesEnabled(await Crashes.isEnabled());
                         Alert.alert("Enabled: " + (await Crashes.isEnabled()));
                       }
@@ -90,10 +104,28 @@ const App: () => React$Node = () => {
                   title: 'Actions',
                   data: [
                     {
+                      title: 'Is Appcenter Enabled?',
+                      action: async () => {
+                        const result = await appcenter.isEnabled()
+                        Alert.alert("appcenter enabled: " + result);
+                      }
+                    },
+                    {
+                      title: 'javascript crash',
+                      action: () => {
+                        throw 500;
+                      }
+                    },
+                    {
+                      title: 'Is Crashes Enabled?',
+                      action: async () => {
+                        const result = await Crashes.isEnabled()
+                        Alert.alert("Crashes enabled?: " + result);
+                      }
+                    },
+                    {
                       title: 'Has Crashed?',
                       action: async () => {
-                        //Alert.alert('Pressed Track Event Without Properties');
-                        //const eventName = 'EventWithoutProperties';
                         const result = await Crashes.hasCrashedInLastSession()
                         if (result) {
                           const crashReport = await Crashes.lastSessionCrashReport();
@@ -102,28 +134,18 @@ const App: () => React$Node = () => {
                         } else {
                           Alert.alert("Has Crashed: " + result);
                         }
-                        //Analytics.trackEvent(eventName);
-                        //showEventToast(eventName);
                       }
                     },
                     {
                       title: 'Past Memory Warning?',
                       action: async () => {
-                        //Alert.alert('Pressed Track Event With Properties');
-                        //const eventName = 'EventWithProperties';
                         const result = await Crashes.hasReceivedMemoryWarningInLastSession();
                         Alert.alert("Has recieved memory warning in last session: " + result);
-                        //Analytics.trackEvent(eventName, { property1: '100', property2: '200' });
-                        //showEventToast(eventName);
                       }
                     },
                     {
                       title: 'Generate Test Crash',
                       action: async () => {
-                        //Alert.alert('Pressed Track Event With Long Property Value');
-                        //const eventName = 'EventWithLongProperties';
-                        //Analytics.trackEvent(eventName, { propertyValueTooLong: '12345678901234567890123456789012345678901234567890123456789012345' });
-                        //showEventToast(eventName);
                         await Crashes.generateTestCrash();
                       }
                     },
@@ -131,6 +153,7 @@ const App: () => React$Node = () => {
                       title: 'Don\'t Send Crash Reports',
                       action: () => {
                         Crashes.notifyUserConfirmation(UserConfirmation.DONT_SEND);
+                        
                       }
                     },
                     {
@@ -143,6 +166,28 @@ const App: () => React$Node = () => {
                       title: 'Always Send Crash Reports',
                       action: () => {
                         Crashes.notifyUserConfirmation(UserConfirmation.ALWAYS_SEND);
+                      }
+                    },
+                    {
+                      title: 'Make Alert',
+                      action: () => {
+                        Alert.alert(
+                          'Alert Title',
+                          'My Alert Msg',
+                          [
+                            {
+                              text: 'Ask me later',
+                              onPress: () => console.log('Ask me later pressed')
+                            },
+                            {
+                              text: 'Cancel',
+                              onPress: () => console.log('Cancel Pressed'),
+                              style: 'cancel'
+                            },
+                            { text: 'OK', onPress: () => console.log('OK Pressed') }
+                          ],
+                          { cancelable: false }
+                        );
                       }
                     },
                   ],
