@@ -23,6 +23,7 @@ import {
 
 import AppCenter, {CustomProperties} from 'appcenter';
 import Analytics from 'appcenter-analytics';
+import Crashes, { UserConfirmation, ErrorAttachmentLog } from 'appcenter-crashes';
 
 import {
   Header,
