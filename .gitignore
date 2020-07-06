@@ -77,3 +77,4 @@ AppCenterReactNativeShared/Products/AppCenter-SDK-ReactNative-iOS-Pod-*.zip
 /DemoAppWinCS/windows/DemoAppWinCS/DemoAppWinCS_TemporaryKey.snk
 /appcenter/yarn.lock
 /appcenter-analytics/yarn.lock
+/DemoAppWinCS2/.vs/

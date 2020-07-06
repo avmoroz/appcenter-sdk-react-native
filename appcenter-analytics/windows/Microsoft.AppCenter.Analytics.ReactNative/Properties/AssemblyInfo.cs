@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AppCenterReactNativeAnalytics")]
+[assembly: AssemblyTitle("Microsoft.AppCenter.Analytics.ReactNative")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AppCenterReactNativeAnalytics")]
+[assembly: AssemblyProduct("Microsoft.AppCenter.Analytics.ReactNative")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

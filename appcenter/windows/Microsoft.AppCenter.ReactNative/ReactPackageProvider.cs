@@ -1,7 +1,7 @@
 ﻿using Microsoft.ReactNative;
 using Microsoft.ReactNative.Managed;
 
-namespace AppCenterReactNativeAnalytics
+namespace Microsoft.AppCenter.ReactNative
 {
     public sealed class ReactPackageProvider : IReactPackageProvider
     {

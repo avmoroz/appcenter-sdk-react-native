@@ -165,13 +165,13 @@
     <None Include="DemoAppWinCS_TemporaryKey.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\node_modules\appcenter-analytics\windows\AppCenterReactNativeAnalytics\AppCenterReactNativeAnalytics.csproj">
-      <Project>{7964b8c0-0657-4f31-8324-47a245264c52}</Project>
-      <Name>AppCenterReactNativeAnalytics</Name>
+    <ProjectReference Include="..\..\node_modules\appcenter-analytics\windows\Microsoft.AppCenter.Analytics.ReactNative\Microsoft.AppCenter.Analytics.ReactNative.csproj">
+      <Project>{4ef32c87-5eb2-4d05-bff2-666a22aee9ab}</Project>
+      <Name>Microsoft.AppCenter.Analytics.ReactNative</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\node_modules\appcenter\windows\AppCenter\AppCenter.csproj">
-      <Project>{0bd6df37-fb95-46e2-8e77-6cd7365a36cb}</Project>
-      <Name>AppCenter</Name>
+    <ProjectReference Include="..\..\node_modules\appcenter\windows\Microsoft.AppCenter.ReactNative\Microsoft.AppCenter.ReactNative.csproj">
+      <Project>{efa3ffde-de23-4444-9a88-a5fce053b371}</Project>
+      <Name>Microsoft.AppCenter.ReactNative</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\node_modules\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj">
       <Project>{f7d32bd0-2749-483e-9a0d-1635ef7e3136}</Project>

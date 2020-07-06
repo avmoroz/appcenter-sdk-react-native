@@ -2,7 +2,7 @@
 using Microsoft.ReactNative.Managed;
 using System.Collections.Generic;
 
-namespace AppCenterReactNativeAnalytics
+namespace Microsoft.AppCenter.Analytics.ReactNative
 {
 	[ReactModule]
 	class AppCenterReactNativeAnalytics

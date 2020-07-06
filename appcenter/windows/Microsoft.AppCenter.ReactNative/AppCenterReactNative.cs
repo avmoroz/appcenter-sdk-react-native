@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.AppCenter;
+﻿using Microsoft.AppCenter;
 using Microsoft.ReactNative.Managed;
+using System;
 
-namespace AppCenter
+namespace Microsoft.AppCenter.ReactNative
 {
     [ReactModule]
     class AppCenterReactNative
@@ -47,7 +47,7 @@ namespace AppCenter
         }
 
         [ReactMethod("setUserId")]
-        public void SetUserId(String userId)
+        public void SetUserId(string userId)
         {
             Microsoft.AppCenter.AppCenter.SetUserId(userId);
         }

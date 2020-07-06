@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7964B8C0-0657-4F31-8324-47A245264C52}</ProjectGuid>
+    <ProjectGuid>{EFA3FFDE-DE23-4444-9A88-A5FCE053B371}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AppCenterReactNativeAnalytics</RootNamespace>
-    <AssemblyName>AppCenterReactNativeAnalytics</AssemblyName>
+    <RootNamespace>Microsoft.AppCenter.ReactNative</RootNamespace>
+    <AssemblyName>Microsoft.AppCenter.ReactNative</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
@@ -121,12 +121,12 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AppCenterReactNativeAnalytics.cs" />
+    <Compile Include="AppCenterReactNative.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReactPackageProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AppCenter.Analytics">
+    <PackageReference Include="Microsoft.AppCenter">
       <Version>3.2.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
@@ -134,13 +134,21 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\node_modules\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj">
+    <ProjectReference Include="..\..\node_modules\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj" Condition="Exists('..\..\..\..\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj')">
+      <Project>{f7d32bd0-2749-483e-9a0d-1635ef7e3136}</Project>
+      <Name>Microsoft.ReactNative</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj" Condition="Exists('..\..\node_modules\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj')">
       <Project>{f7d32bd0-2749-483e-9a0d-1635ef7e3136}</Project>
       <Name>Microsoft.ReactNative</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\..\..\..\node_modules\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems" Label="Shared" />
+  <ImportGroup Label="Shared">
+    <Import Project="..\..\node_modules\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems" Condition="Exists('..\..\node_modules\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems')" />
+    <Import Project="..\..\..\..\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems" Condition="Exists('..\..\..\..\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems')" />
+  </ImportGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
