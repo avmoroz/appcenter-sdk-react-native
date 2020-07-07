@@ -12,7 +12,7 @@ using Windows.Data.Json;
 using System.Runtime.CompilerServices;
 
 
-namespace AppCenterReactNativeCrashes
+namespace Microsoft.AppCenter.Crashes.ReactNative
 {
 
 	class RedBoxHandler : IRedBoxHandler
