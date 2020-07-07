@@ -4,12 +4,7 @@ using Microsoft.ReactNative.Managed;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
-using Windows.Media.Ocr;
-using System.Linq;
-using Windows.Devices.PointOfService;
-using System.Collections.Generic;
 using Windows.Data.Json;
-using System.Runtime.CompilerServices;
 
 
 namespace AppCenterReactNativeCrashes
@@ -74,24 +69,17 @@ namespace AppCenterReactNativeCrashes
 	[ReactModule]
 	class AppCenterReactNativeCrashes
 	{
-
 		public AppCenterReactNativeCrashes() {
-			//AppCenter.Start(typeof(Crashes));
-			//Crashes.ShouldProcessErrorReport = ShouldProcess;
-			//Crashes.ShouldAwaitUserConfirmation = ;
-			//Crashes.GetErrorAttachments = ;
+			if (!AppCenter.Configured) {
+				AppCenterReactNativeShared.AppCenterReactNativeShared.configureAppCenter();
+			}
+			AppCenter.Start(typeof(Crashes));
 
 			Crashes.SendingErrorReport += Crashes_SendingErrorReport;
 			Crashes.SentErrorReport += Crashes_SentErrorReport;
 			Crashes.FailedToSendErrorReport += Crashes_FailedToSendErrorReport;
-			//Console.WriteLine(AppCenter.Configured);
-			//Crashes.TrackError()
-		}
 
-		//[ReactMethod("setEnabled")]
-		//public async void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
-		//	int ans = 42 / 0;
-		//}
+		}
 
 		[ReactMethod("setEnabled")]
 		public async void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {

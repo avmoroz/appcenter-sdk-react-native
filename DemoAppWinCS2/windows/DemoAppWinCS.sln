@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenterReactNativeAnalyti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenterReactNativeCrashes", "Microsoft.AppCenter.Crashes.ReactNative\AppCenterReactNativeCrashes.csproj", "{7123D960-6164-4748-9786-F15E5D5DB03B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCenterReactNativeShared", "AppCenterReactNativeShared\AppCenterReactNativeShared.csproj", "{BFE98149-6E4D-4B60-9127-D1B36861BD8B}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\node_modules\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems*{0bd6df37-fb95-46e2-8e77-6cd7365a36cb}*SharedItemsImports = 4
@@ -51,6 +53,7 @@ Global
 		..\node_modules\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems*{7123d960-6164-4748-9786-f15e5d5db03b}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems*{7964b8c0-0657-4f31-8324-47a245264c52}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\JSI\Shared\JSI.Shared.vcxitems*{a62d504a-16b8-41d2-9f19-e2e86019e5e4}*SharedItemsImports = 4
+		..\node_modules\react-native-windows\Microsoft.ReactNative.SharedManaged\Microsoft.ReactNative.SharedManaged.projitems*{bfe98149-6e4d-4b60-9127-d1b36861bd8b}*SharedItemsImports = 4
 		..\node_modules\react-native-windows\Chakra\Chakra.vcxitems*{c38970c0-5fbf-4d69-90d8-cbac225ae895}*SharedItemsImports = 9
 		..\node_modules\react-native-windows\Microsoft.ReactNative.Cxx\Microsoft.ReactNative.Cxx.vcxitems*{da8b35b3-da00-4b02-bde6-6a397b3fd46b}*SharedItemsImports = 9
 		..\node_modules\react-native-windows\Chakra\Chakra.vcxitems*{f7d32bd0-2749-483e-9a0d-1635ef7e3136}*SharedItemsImports = 4
@@ -267,6 +270,26 @@ Global
 		{7123D960-6164-4748-9786-F15E5D5DB03B}.Release|x64.Build.0 = Release|x64
 		{7123D960-6164-4748-9786-F15E5D5DB03B}.Release|x86.ActiveCfg = Release|x86
 		{7123D960-6164-4748-9786-F15E5D5DB03B}.Release|x86.Build.0 = Release|x86
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|ARM.Build.0 = Debug|ARM
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|ARM64.Build.0 = Debug|ARM64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|x64.ActiveCfg = Debug|x64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|x64.Build.0 = Debug|x64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|x86.ActiveCfg = Debug|x86
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Debug|x86.Build.0 = Debug|x86
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|ARM.ActiveCfg = Release|ARM
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|ARM.Build.0 = Release|ARM
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|ARM64.ActiveCfg = Release|ARM64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|ARM64.Build.0 = Release|ARM64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|x64.ActiveCfg = Release|x64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|x64.Build.0 = Release|x64
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|x86.ActiveCfg = Release|x86
+		{BFE98149-6E4D-4B60-9127-D1B36861BD8B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
