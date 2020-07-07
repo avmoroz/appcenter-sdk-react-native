@@ -168,6 +168,10 @@
       <Project>{4ef32c87-5eb2-4d05-bff2-666a22aee9ab}</Project>
       <Name>Microsoft.AppCenter.Analytics.ReactNative</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\appcenter-crashes\windows\Microsoft.AppCenter.Crashes.ReactNative\Microsoft.AppCenter.Crashes.ReactNative.csproj">
+      <Project>{a082aa35-461b-48c1-b01d-ff8083f076d5}</Project>
+      <Name>Microsoft.AppCenter.Crashes.ReactNative</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\node_modules\appcenter\windows\Microsoft.AppCenter.ReactNative\Microsoft.AppCenter.ReactNative.csproj">
       <Project>{efa3ffde-de23-4444-9a88-a5fce053b371}</Project>
       <Name>Microsoft.AppCenter.ReactNative</Name>
@@ -175,10 +179,7 @@
     <ProjectReference Include="..\..\node_modules\react-native-windows\Microsoft.ReactNative\Microsoft.ReactNative.vcxproj">
       <Project>{f7d32bd0-2749-483e-9a0d-1635ef7e3136}</Project>
       <Name>Microsoft.ReactNative</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Microsoft.AppCenter.Crashes.ReactNative\AppCenterReactNativeCrashes.csproj">
-      <Project>{7123d960-6164-4748-9786-f15e5d5db03b}</Project>
-      <Name>AppCenterReactNativeCrashes</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">
