@@ -34,11 +34,12 @@ namespace DemoAppWinCS
             PackageProviders.Add(new Microsoft.AppCenter.Crashes.ReactNative.ReactPackageProvider());
             InitializeComponent();
         }
-
+        /*
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             base.OnLaunched(e);
             AppCenterReactNativeShared.AppCenterReactNativeShared.configureAppCenter();
         }
+        */
     }
 }
