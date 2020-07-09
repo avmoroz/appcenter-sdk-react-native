@@ -1,4 +1,5 @@
 ﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.ReactNative.Shared;
 using Microsoft.ReactNative.Managed;
 using System;
 
@@ -7,6 +8,11 @@ namespace Microsoft.AppCenter.ReactNative
     [ReactModule]
     class AppCenterReactNative
     {
+        public AppCenterReactNative()
+        {
+            AppCenterReactNativeShared.ConfigureAppCenter();
+        }
+
         [ReactMethod("startFromLibrary")]
         public void StartFromLibrary(JSValue service)
         {
