@@ -4,6 +4,7 @@ using Microsoft.ReactNative.Managed;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.ReactNative.Shared;
 using Windows.Media.Ocr;
 using System.Linq;
 using Windows.Devices.PointOfService;
@@ -76,7 +77,8 @@ namespace Microsoft.AppCenter.Crashes.ReactNative
 	{
 
 		public AppCenterReactNativeCrashes() {
-			//AppCenter.Start(typeof(Crashes));
+			AppCenterReactNativeShared.ConfigureAppCenter();
+			AppCenter.Start(typeof(Crashes));
 			//Crashes.ShouldProcessErrorReport = ShouldProcess;
 			//Crashes.ShouldAwaitUserConfirmation = ;
 			//Crashes.GetErrorAttachments = ;
