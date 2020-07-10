@@ -10,9 +10,14 @@ namespace Microsoft.AppCenter.Analytics.ReactNative
 	{
 		public AppCenterReactNativeAnalytics()
         {
-			AppCenterReactNativeShared.ConfigureAppCenter();
-			AppCenter.Start(typeof(Analytics));
+			StartAnalytics();
         }
+
+		private async void StartAnalytics()
+        {
+			await await AppCenterReactNativeShared.ConfigureAppCenter();
+			AppCenter.Start(typeof(Analytics));
+		}
 
 		[ReactMethod("setEnabled")]
 		public void SetEnabled(bool enabled, ReactPromise<JSValue> promise)

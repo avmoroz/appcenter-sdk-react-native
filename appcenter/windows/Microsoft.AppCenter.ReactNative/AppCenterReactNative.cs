@@ -10,7 +10,7 @@ namespace Microsoft.AppCenter.ReactNative
     {
         public AppCenterReactNative()
         {
-            AppCenterReactNativeShared.ConfigureAppCenter();
+            _ = AppCenterReactNativeShared.ConfigureAppCenter();
         }
 
         [ReactMethod("startFromLibrary")]

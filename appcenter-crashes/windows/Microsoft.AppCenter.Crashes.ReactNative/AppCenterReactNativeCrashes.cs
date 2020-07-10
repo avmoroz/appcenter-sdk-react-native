@@ -77,7 +77,12 @@ namespace Microsoft.AppCenter.Crashes.ReactNative
 	{
 
 		public AppCenterReactNativeCrashes() {
-			AppCenterReactNativeShared.ConfigureAppCenter();
+			StartCrashes();
+		}
+
+		private async void StartCrashes()
+        {
+			await await AppCenterReactNativeShared.ConfigureAppCenter();
 			AppCenter.Start(typeof(Crashes));
 			//Crashes.ShouldProcessErrorReport = ShouldProcess;
 			//Crashes.ShouldAwaitUserConfirmation = ;

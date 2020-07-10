@@ -16,7 +16,7 @@ namespace Microsoft.AppCenter.ReactNative.Shared
 
         private const string StartAutomaticallyKey = "start_automatically";
 
-        private static bool _configured = false;
+        private static bool _configuring = false;
 
         private static JsonObject _configuration = null;
 
@@ -24,33 +24,53 @@ namespace Microsoft.AppCenter.ReactNative.Shared
 
         private static bool _startAutomatically;
 
-        public async static void ConfigureAppCenter()
-        {
-            if (_configured)
-            {
-                return;
-            }
-            _configured = true;
-            var wrapperSdk = new Microsoft.AppCenter.WrapperSdk(
-                "appcenter.react-native",
-                "3.0.3");
-            Microsoft.AppCenter.AppCenter.SetWrapperSdk(wrapperSdk);
-            await ReadConfigurationFile();
-            if (!_startAutomatically)
-            {
-                AppCenterLog.Debug(AppCenterLog.LogTag, "Configure not to start automatically.");
-                return;
-            }
+        private static object _lockObject = new object();
 
-            if (_appSecret != null && _appSecret.Length != 0)
+        private static TaskCompletionSource<bool> _taskCompetionSource;
+
+        public async static Task<Task> ConfigureAppCenter()
+        {
+            lock(_lockObject)
             {
-                AppCenterLog.Debug(AppCenterLog.LogTag, "Configure without secret.");
+                if (_configuring)
+                {
+                    return _taskCompetionSource.Task;
+                }
+                _taskCompetionSource = new TaskCompletionSource<bool>();
+                _configuring = true;
             }
-            else
+            
+            try
             {
-                AppCenterLog.Debug(AppCenterLog.LogTag, "Configure with secret.");
-                AppCenter.Configure(_appSecret);
+                var wrapperSdk = new Microsoft.AppCenter.WrapperSdk(
+                    "appcenter.react-native",
+                    "3.0.3");
+                Microsoft.AppCenter.AppCenter.SetWrapperSdk(wrapperSdk);
+                await ReadConfigurationFile();
+                if (!_startAutomatically)
+                {
+                    AppCenterLog.Debug(AppCenterLog.LogTag, "Configure not to start automatically.");
+                }
+                else
+                {
+                    if (_appSecret == null || _appSecret.Length == 0)
+                    {
+                        // .NET SDK does not allow the user to configure AppCenter without an app secret.
+                        AppCenterLog.Debug(AppCenterLog.LogTag, "Configure without secret.");
+                    }
+                    else
+                    {
+                        AppCenterLog.Debug(AppCenterLog.LogTag, "Configure with secret.");
+                        AppCenter.Configure(_appSecret);
+                    }
+                }
+                _taskCompetionSource.SetResult(true);
             }
+            catch(Exception e)
+            {
+                _taskCompetionSource.SetException(e);
+            }
+            return _taskCompetionSource.Task;
         }
 
         private async static Task ReadConfigurationFile()
@@ -72,6 +92,7 @@ namespace Microsoft.AppCenter.ReactNative.Shared
             {
                 AppCenterLog.Error(AppCenterLog.LogTag, "Failed to parse appcenter-config.json", e);
                 _configuration = new JsonObject();
+                throw;
             }
         }
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+U0TB1xKQp3u7VxNDXbfHjD+oY9WQ43Pv9gRcCsZgWJ39gLz9t8fxmFjw/QxtfpXR3UOPykgAzryv7NHPT9S+A==",
+  "dgSpecHash": "9ONN7L3Pk17FtiQa11LKqTZEzHxGnebAs2W1hd60XCzQT6X2YiJ4LUjjza0VDOEq8upsJAb0hF3ofE2aOGLBhQ==",
   "success": true,
-  "projectFilePath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
+  "projectFilePath": "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aleksey\\.nuget\\packages\\microsoft.appcenter\\3.3.0\\microsoft.appcenter.3.3.0.nupkg.sha512",
     "C:\\Users\\Aleksey\\.nuget\\packages\\microsoft.appcenter.crashes\\3.3.0\\microsoft.appcenter.crashes.3.3.0.nupkg.sha512",
