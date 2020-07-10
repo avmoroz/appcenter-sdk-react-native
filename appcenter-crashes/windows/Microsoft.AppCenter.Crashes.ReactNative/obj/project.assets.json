@@ -10100,18 +10100,18 @@
     },
     "Common/1.0.0": {
       "type": "project",
-      "path": "../../../react-native-windows/Common/Common.vcxproj",
-      "msbuildProject": "../../../react-native-windows/Common/Common.vcxproj"
+      "path": "../../node_modules/react-native-windows/Common/Common.vcxproj",
+      "msbuildProject": "../../node_modules/react-native-windows/Common/Common.vcxproj"
     },
     "Folly/1.0.0": {
       "type": "project",
-      "path": "../../../react-native-windows/Folly/Folly.vcxproj",
-      "msbuildProject": "../../../react-native-windows/Folly/Folly.vcxproj"
+      "path": "../../node_modules/react-native-windows/Folly/Folly.vcxproj",
+      "msbuildProject": "../../node_modules/react-native-windows/Folly/Folly.vcxproj"
     },
     "JSI.Universal/1.0.0": {
       "type": "project",
-      "path": "../../../react-native-windows/JSI/Universal/JSI.Universal.vcxproj",
-      "msbuildProject": "../../../react-native-windows/JSI/Universal/JSI.Universal.vcxproj"
+      "path": "../../node_modules/react-native-windows/JSI/Universal/JSI.Universal.vcxproj",
+      "msbuildProject": "../../node_modules/react-native-windows/JSI/Universal/JSI.Universal.vcxproj"
     },
     "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
       "type": "project",
@@ -10120,18 +10120,18 @@
     },
     "Microsoft.ReactNative/1.0.0": {
       "type": "project",
-      "path": "../../../react-native-windows/Microsoft.ReactNative/Microsoft.ReactNative.vcxproj",
-      "msbuildProject": "../../../react-native-windows/Microsoft.ReactNative/Microsoft.ReactNative.vcxproj"
+      "path": "../../node_modules/react-native-windows/Microsoft.ReactNative/Microsoft.ReactNative.vcxproj",
+      "msbuildProject": "../../node_modules/react-native-windows/Microsoft.ReactNative/Microsoft.ReactNative.vcxproj"
     },
     "ReactCommon/1.0.0": {
       "type": "project",
-      "path": "../../../react-native-windows/ReactCommon/ReactCommon.vcxproj",
-      "msbuildProject": "../../../react-native-windows/ReactCommon/ReactCommon.vcxproj"
+      "path": "../../node_modules/react-native-windows/ReactCommon/ReactCommon.vcxproj",
+      "msbuildProject": "../../node_modules/react-native-windows/ReactCommon/ReactCommon.vcxproj"
     },
     "ReactWindowsCore/1.0.0": {
       "type": "project",
-      "path": "../../../react-native-windows/ReactWindowsCore/ReactWindowsCore.vcxproj",
-      "msbuildProject": "../../../react-native-windows/ReactWindowsCore/ReactWindowsCore.vcxproj"
+      "path": "../../node_modules/react-native-windows/ReactWindowsCore/ReactWindowsCore.vcxproj",
+      "msbuildProject": "../../node_modules/react-native-windows/ReactWindowsCore/ReactWindowsCore.vcxproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10150,11 +10150,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
+      "projectUniqueName": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
       "projectName": "Microsoft.AppCenter.Crashes.ReactNative",
-      "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
+      "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
       "packagesPath": "C:\\Users\\Aleksey\\.nuget\\packages\\",
-      "outputPath": "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\obj\\",
+      "outputPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -10176,11 +10176,11 @@
       "frameworks": {
         "uap10.0.16299": {
           "projectReferences": {
-            "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\appcenter\\windows\\Microsoft.AppCenter.ReactNative.Shared\\Microsoft.AppCenter.ReactNative.Shared.csproj": {
-              "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\appcenter\\windows\\Microsoft.AppCenter.ReactNative.Shared\\Microsoft.AppCenter.ReactNative.Shared.csproj"
+            "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj": {
+              "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj"
             },
-            "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj": {
-              "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj"
+            "C:\\GitHub\\appcenter-sdk-react-native\\appcenter\\windows\\Microsoft.AppCenter.ReactNative.Shared\\Microsoft.AppCenter.ReactNative.Shared.csproj": {
+              "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter\\windows\\Microsoft.AppCenter.ReactNative.Shared\\Microsoft.AppCenter.ReactNative.Shared.csproj"
             }
           }
         }
