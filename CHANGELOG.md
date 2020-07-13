@@ -1,5 +1,29 @@
 # App Center SDK for React Native Change Log
 
+## Version 3.1.0
+
+This version has a breaking change on iOS - it drops Xcode 10 support, Xcode 11 is a minimal supported version now.
+
+### App Center
+
+#### iOS
+
+* **[Fix]** Fix crash when local binary data (where unsent logs or unprocessed crashed are stored) is corrupted.
+* **[Fix]** When carrier name is retrieved incorrectly by iOS, show `nil` as expected instead of "carrier" string.
+
+#### Android
+
+* **[Fix]** Fix possible delays in UI thread when queueing a large number of events.
+
+### App Center Crashes
+
+#### iOS
+
+* **[Improvement]** Update PLCrashReporter to 1.7.1.
+* **[Fix]** Fix reporting stacktraces on iOS simulator.
+
+___
+
 ## Version 3.0.3
 
 ### App Center
