@@ -1,7 +1,7 @@
 ﻿using Microsoft.ReactNative;
 using Microsoft.ReactNative.Managed;
 
-namespace AppCenterReactNativeCrashes
+namespace Microsoft.AppCenter.Crashes.ReactNative
 {
     public sealed class ReactPackageProvider : IReactPackageProvider
     {

@@ -1,6 +1,6 @@
 {
   "name": "appcenter-crashes",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "description": "React Native plugin for AppCenter Crashes",
   "main": "Crashes.js",
   "types": "Crashes.d.ts",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Microsoft/appcenter-sdk-react-native/blob/master/appcenter-crashes/README.md",
   "dependencies": {
-    "appcenter": "3.0.3"
+    "appcenter": "3.1.0"
   },
   "rnpm": {
     "android": {
@@ -38,9 +38,14 @@
     "eslint-config-airbnb": "18.0.1",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.16.0"
+    "eslint-plugin-react": "7.16.0",
+    "react-native": "0.62",
+    "react-native-windows": "0.62"
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint ."
+  },
+  "peerDependencies": {
+    "react-native-windows": "0.62"
   }
 }

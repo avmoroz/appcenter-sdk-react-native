@@ -13,10 +13,13 @@
   "dependencies": {
     "appcenter": "file:../appcenter",
     "appcenter-analytics": "file:../appcenter-analytics",
-    "appcenter-crashes": "3.0.3",
+    "appcenter-crashes": "file:../appcenter-crashes",
     "react": "16.9.0",
     "react-native": "0.62",
     "react-native-windows": "0.62"
+  },
+  "resolutions": {
+	"@react-native-community/cli-debugger-ui": "4.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

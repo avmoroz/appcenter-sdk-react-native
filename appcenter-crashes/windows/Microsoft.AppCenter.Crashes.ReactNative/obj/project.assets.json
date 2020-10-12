@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "UAP,Version=v10.0.16299": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -16,10 +16,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -528,6 +528,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -564,7 +578,7 @@
       }
     },
     "UAP,Version=v10.0.16299/win10-arm": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -578,10 +592,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -1206,6 +1220,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -1242,7 +1270,7 @@
       }
     },
     "UAP,Version=v10.0.16299/win10-arm-aot": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -1256,10 +1284,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -1885,6 +1913,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -1921,7 +1963,7 @@
       }
     },
     "UAP,Version=v10.0.16299/win10-arm64-aot": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -1935,10 +1977,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -2564,6 +2606,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -2600,7 +2656,7 @@
       }
     },
     "UAP,Version=v10.0.16299/win10-x64": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -2614,10 +2670,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -3242,6 +3298,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -3278,7 +3348,7 @@
       }
     },
     "UAP,Version=v10.0.16299/win10-x64-aot": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -3292,10 +3362,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -3921,6 +3991,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -3957,7 +4041,7 @@
       }
     },
     "UAP,Version=v10.0.16299/win10-x86": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -3971,10 +4055,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -4599,6 +4683,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -4635,7 +4733,7 @@
       }
     },
     "UAP,Version=v10.0.16299/win10-x86-aot": {
-      "Microsoft.AppCenter/3.2.2": {
+      "Microsoft.AppCenter/3.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.8",
@@ -4649,10 +4747,10 @@
           "lib/uap10.0/Microsoft.AppCenter.dll": {}
         }
       },
-      "Microsoft.AppCenter.Crashes/3.2.2": {
+      "Microsoft.AppCenter.Crashes/3.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AppCenter": "3.2.2",
+          "Microsoft.AppCenter": "3.3.0",
           "System.Reflection.Metadata": "1.7.0"
         },
         "compile": {
@@ -5278,6 +5376,20 @@
           "bin/placeholder/JSI.Universal.dll": {}
         }
       },
+      "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0.16299",
+        "dependencies": {
+          "Microsoft.AppCenter": "3.3.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.10"
+        },
+        "compile": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Microsoft.AppCenter.ReactNative.Shared.dll": {}
+        }
+      },
       "Microsoft.ReactNative/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -5315,10 +5427,10 @@
     }
   },
   "libraries": {
-    "Microsoft.AppCenter/3.2.2": {
-      "sha512": "qmpnmCQnNKx8a4xRtDEj7T6MOPPC9fnMfYmxDdMMKDEl4cUxwBp0RrUTuKzatfSo6txKbCRrBlrcPfUmNcOvkA==",
+    "Microsoft.AppCenter/3.3.0": {
+      "sha512": "IVcnOfoFUibczOoWFr9Z4vyWyf0wWpOUoj41CVC4j6WVMGVAKC3l6Byu8x8yquOdOAVcLhPyqL0fyXgdS5RcHA==",
       "type": "package",
-      "path": "microsoft.appcenter/3.2.2",
+      "path": "microsoft.appcenter/3.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5336,14 +5448,14 @@
         "lib/netstandard1.0/Microsoft.AppCenter.xml",
         "lib/uap10.0/Microsoft.AppCenter.dll",
         "lib/uap10.0/Microsoft.AppCenter.xml",
-        "microsoft.appcenter.3.2.2.nupkg.sha512",
+        "microsoft.appcenter.3.3.0.nupkg.sha512",
         "microsoft.appcenter.nuspec"
       ]
     },
-    "Microsoft.AppCenter.Crashes/3.2.2": {
-      "sha512": "OcRqm6vzuV0rUj9xE6qa/jHFJn0qin26o9R+11hDl7Lh/IQxzm5ReNVRNkOTK3W8Y6bdiDXDwBHfdFQlvbserg==",
+    "Microsoft.AppCenter.Crashes/3.3.0": {
+      "sha512": "3fTBBK9I3hQInXNb3n4IyaZ70mGwEWfdF+Zkwz4eLzk+iV2RYT/+U+v8HQfwHvplUBy8x3AAQ7h7SFIzX7vGxw==",
       "type": "package",
-      "path": "microsoft.appcenter.crashes/3.2.2",
+      "path": "microsoft.appcenter.crashes/3.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5361,7 +5473,7 @@
         "lib/netstandard1.0/Microsoft.AppCenter.Crashes.xml",
         "lib/uap10.0/Microsoft.AppCenter.Crashes.dll",
         "lib/uap10.0/Microsoft.AppCenter.Crashes.xml",
-        "microsoft.appcenter.crashes.3.2.2.nupkg.sha512",
+        "microsoft.appcenter.crashes.3.3.0.nupkg.sha512",
         "microsoft.appcenter.crashes.nuspec"
       ]
     },
@@ -5747,7 +5859,7 @@
       ]
     },
     "NETStandard.Library/2.0.3": {
-      "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
+      "sha512": "548M6mnBSJWxsIlkQHfbzoYxpiYFXZZSL00p4GHYv8PkiqFBnnT68mW5mGEsA/ch9fDO9GkPgkFQpWiXZN7mAQ==",
       "type": "package",
       "path": "netstandard.library/2.0.3",
       "files": [
@@ -10001,6 +10113,11 @@
       "path": "../../node_modules/react-native-windows/JSI/Universal/JSI.Universal.vcxproj",
       "msbuildProject": "../../node_modules/react-native-windows/JSI/Universal/JSI.Universal.vcxproj"
     },
+    "Microsoft.AppCenter.ReactNative.Shared/1.0.0": {
+      "type": "project",
+      "path": "../../../appcenter/windows/Microsoft.AppCenter.ReactNative.Shared/Microsoft.AppCenter.ReactNative.Shared.csproj",
+      "msbuildProject": "../../../appcenter/windows/Microsoft.AppCenter.ReactNative.Shared/Microsoft.AppCenter.ReactNative.Shared.csproj"
+    },
     "Microsoft.ReactNative/1.0.0": {
       "type": "project",
       "path": "../../node_modules/react-native-windows/Microsoft.ReactNative/Microsoft.ReactNative.vcxproj",
@@ -10019,35 +10136,35 @@
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
-      "Microsoft.AppCenter >= 3.2.2",
-      "Microsoft.AppCenter.Crashes >= 3.2.2",
+      "Microsoft.AppCenter.Crashes >= 3.3.0",
+      "Microsoft.AppCenter.ReactNative.Shared >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.10",
       "Microsoft.ReactNative >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\Aleksey\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Github\\appcenter-sdk-react-native\\DemoAppWinCS2\\windows\\Microsoft.ReactNative.AppCenter.Crashes\\AppCenterReactNativeCrashes.csproj",
-      "projectName": "AppCenterReactNativeCrashes",
-      "projectPath": "C:\\Github\\appcenter-sdk-react-native\\DemoAppWinCS2\\windows\\Microsoft.ReactNative.AppCenter.Crashes\\AppCenterReactNativeCrashes.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Github\\appcenter-sdk-react-native\\DemoAppWinCS2\\windows\\Microsoft.ReactNative.AppCenter.Crashes\\obj\\",
+      "projectUniqueName": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
+      "projectName": "Microsoft.AppCenter.Crashes.ReactNative",
+      "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\Microsoft.AppCenter.Crashes.ReactNative.csproj",
+      "packagesPath": "C:\\Users\\Aleksey\\.nuget\\packages\\",
+      "outputPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\windows\\Microsoft.AppCenter.Crashes.ReactNative\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Aleksey\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "uap10.0.16299"
@@ -10059,8 +10176,11 @@
       "frameworks": {
         "uap10.0.16299": {
           "projectReferences": {
-            "C:\\Github\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj": {
-              "projectPath": "C:\\Github\\appcenter-sdk-react-native\\DemoAppWinCS2\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj"
+            "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj": {
+              "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter-crashes\\node_modules\\react-native-windows\\Microsoft.ReactNative\\Microsoft.ReactNative.vcxproj"
+            },
+            "C:\\GitHub\\appcenter-sdk-react-native\\appcenter\\windows\\Microsoft.AppCenter.ReactNative.Shared\\Microsoft.AppCenter.ReactNative.Shared.csproj": {
+              "projectPath": "C:\\GitHub\\appcenter-sdk-react-native\\appcenter\\windows\\Microsoft.AppCenter.ReactNative.Shared\\Microsoft.AppCenter.ReactNative.Shared.csproj"
             }
           }
         }
@@ -10069,13 +10189,9 @@
     "frameworks": {
       "uap10.0.16299": {
         "dependencies": {
-          "Microsoft.AppCenter": {
-            "target": "Package",
-            "version": "[3.2.2, )"
-          },
           "Microsoft.AppCenter.Crashes": {
             "target": "Package",
-            "version": "[3.2.2, )"
+            "version": "[3.3.0, )"
           },
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",

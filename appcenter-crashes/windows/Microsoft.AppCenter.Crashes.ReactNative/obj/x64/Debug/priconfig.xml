@@ -28,8 +28,8 @@
       <qualifier name="AlternateForm" value="" />
       <qualifier name="Platform" value="UAP" />
     </default>
-    <indexer-config type="RESW" convertDotsToSlashes="true" initialPath="AppCenterReactNativeCrashes" />
-    <indexer-config type="RESJSON" initialPath="AppCenterReactNativeCrashes" />
+    <indexer-config type="RESW" convertDotsToSlashes="true" initialPath="Microsoft.AppCenter.Crashes.ReactNative" />
+    <indexer-config type="RESJSON" initialPath="Microsoft.AppCenter.Crashes.ReactNative" />
     <indexer-config type="RESFILES" qualifierDelimiter="." />
   </index>
   <index root="\" startIndexAt="obj\x64\Debug\pri.resfiles">

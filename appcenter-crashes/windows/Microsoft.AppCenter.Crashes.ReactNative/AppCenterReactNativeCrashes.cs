@@ -4,6 +4,7 @@ using Microsoft.ReactNative.Managed;
 
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.ReactNative.Shared;
 using Windows.Media.Ocr;
 using System.Linq;
 using Windows.Devices.PointOfService;
@@ -12,12 +13,10 @@ using Windows.Data.Json;
 using System.Runtime.CompilerServices;
 
 
-namespace AppCenterReactNativeCrashes
+namespace Microsoft.AppCenter.Crashes.ReactNative
 {
-
 	class RedBoxHandler : IRedBoxHandler
 	{
-
 		private IRedBoxHandler defaultHandler;
 		public RedBoxHandler(ReactNativeHost host) {
 			defaultHandler = RedBoxHelper.CreateDefaultHandler(host);
@@ -25,8 +24,6 @@ namespace AppCenterReactNativeCrashes
 
 		// Does not work in release mode
 		public void ShowNewError(IRedBoxErrorInfo info, RedBoxErrorType type) {
-
-			//var properties = new Dictionary<string, string>();
 			int index = 0;
 
 			var callstack = new JsonArray();
@@ -76,22 +73,18 @@ namespace AppCenterReactNativeCrashes
 	{
 
 		public AppCenterReactNativeCrashes() {
-			//AppCenter.Start(typeof(Crashes));
-			//Crashes.ShouldProcessErrorReport = ShouldProcess;
-			//Crashes.ShouldAwaitUserConfirmation = ;
-			//Crashes.GetErrorAttachments = ;
+			StartCrashes();
+		}
+
+		private async void StartCrashes()
+        {
+			await await AppCenterReactNativeShared.ConfigureAppCenter();
+			AppCenter.Start(typeof(Crashes));
 
 			Crashes.SendingErrorReport += Crashes_SendingErrorReport;
 			Crashes.SentErrorReport += Crashes_SentErrorReport;
 			Crashes.FailedToSendErrorReport += Crashes_FailedToSendErrorReport;
-			//Console.WriteLine(AppCenter.Configured);
-			//Crashes.TrackError()
 		}
-
-		//[ReactMethod("setEnabled")]
-		//public async void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
-		//	int ans = 42 / 0;
-		//}
 
 		[ReactMethod("setEnabled")]
 		public async void SetEnabled(bool enabled, ReactPromise<JSValue> promise) {
@@ -176,6 +169,7 @@ namespace AppCenterReactNativeCrashes
 		public Action<ErrorReport> shouldAwaitUserConfirmation { get; set; }
 
 	}
+	
 	static class ErrorReportWriter
 	{
 		public static void WriteValue(this IJSValueWriter writer, ErrorReport errorReport) {
@@ -224,16 +218,5 @@ namespace AppCenterReactNativeCrashes
 			writer.WriteObjectProperty("timeZoneOffset", deviceInfo.TimeZoneOffset);
 			writer.WriteObjectEnd();
 		}
-
-		//public static void WriteValue(this IJSValueWriter writer, IRedBoxErrorFrameInfo redBoxErrorFrameInfo) {
-		//	writer.WriteObjectBegin();
-		//	writer.WriteObjectProperty("method", redBoxErrorFrameInfo.Method);
-		//	writer.WriteObjectProperty("file", redBoxErrorFrameInfo.File);
-		//	writer.WriteObjectProperty("line", redBoxErrorFrameInfo.Line);
-		//	writer.WriteObjectProperty("column", redBoxErrorFrameInfo.Column);
-		//	writer.WriteObjectEnd();
-		//}
-
 	}
-
 }

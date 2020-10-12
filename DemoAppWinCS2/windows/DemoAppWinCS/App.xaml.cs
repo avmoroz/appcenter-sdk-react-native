@@ -29,17 +29,17 @@ namespace DemoAppWinCS
             Microsoft.ReactNative.Managed.AutolinkedNativeModules.RegisterAutolinkedNativeModulePackages(PackageProviders); // Includes any autolinked modules
             
             PackageProviders.Add(new Microsoft.ReactNative.Managed.ReactPackageProvider()); // Includes any modules in this project
-            PackageProviders.Add(new AppCenter.ReactPackageProvider());
-            PackageProviders.Add(new AppCenterReactNativeAnalytics.ReactPackageProvider());
-            PackageProviders.Add(new AppCenterReactNativeCrashes.ReactPackageProvider());
-
+            PackageProviders.Add(new Microsoft.AppCenter.ReactNative.ReactPackageProvider());
+            PackageProviders.Add(new Microsoft.AppCenter.Analytics.ReactNative.ReactPackageProvider());
+            PackageProviders.Add(new Microsoft.AppCenter.Crashes.ReactNative.ReactPackageProvider());
             InitializeComponent();
         }
-
+        /*
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             base.OnLaunched(e);
             AppCenterReactNativeShared.AppCenterReactNativeShared.configureAppCenter();
         }
+        */
     }
 }
